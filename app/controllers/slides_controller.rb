@@ -36,6 +36,7 @@ class SlidesController < ApplicationController
   def update
     @slide = UrlSlide.find(params[:id])
     if @slide.update_attributes(params[:slide].select { |k, _| k != :type })
+      flash[:notice] = t(:slide_updated)
       respond_to do |format|
         format.html { render action: :show }
         format.json { render json: @slide.to_json }

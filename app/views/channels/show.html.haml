@@ -4,6 +4,8 @@
       = I18n.t(:channel_header, name: @channel.name)
     = simple_form_for @channel, url: {action: "update"} do |f|
       %p
+        - if flash[:notice]
+          %strong= flash[:notice]
         = f.input :name
         = f.submit t(:save_changes)
     -if not @channel.default?

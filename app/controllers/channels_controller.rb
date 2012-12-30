@@ -37,6 +37,7 @@ class ChannelsController < ApplicationController
     @channel = Channel.find(params[:id])
     @channel.update_attributes(params[:channel])
     if @channel.save
+      flash[:notice] = t(:channel_updated)
       respond_to do |format|
         format.html { render action: :show }
         format.json { render json: @channel.to_json }

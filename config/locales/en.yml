@@ -10,6 +10,8 @@ en:
   create_new_channel: "Create channel"
   create: "Create"
   edit: "Edit"
+  channel_updated: "Channel succesfully updated"
+  slide_updated: "Slide succesfully updated"
   set_as_default: "Set as default"
   save_changes: "Save changes"
   name: "Name"

@@ -2,6 +2,8 @@
   %div
     %h1
       = I18n.t(:slide_header, name: @slide.name)
+    - if flash[:notice]
+      %strong= flash[:notice]
     = render partial: "form"
 
     = form_tag({controller: "slides", action: "destroy", id: @slide}, { method: "delete"}) do
