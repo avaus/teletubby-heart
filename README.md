@@ -36,6 +36,8 @@ rake db:seed
 
 * Run "rails server"
 
+* Run "rackup private_pub.ru -s thin -E production"
+
 
 Usage
 -----
