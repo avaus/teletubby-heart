@@ -14,7 +14,7 @@ class ClientController < ApplicationController
     @client.last_login = Time.now
     @client.last_slide_change = Time.now
     @client.save
-    cookies[:client_id] = @client.id
+    cookies.permanent[:client_id] = @client.id
 
     @channel = Channel.find(@client.last_channel)
     @slide = @channel.channel_slides[@client.last_slide].slide
