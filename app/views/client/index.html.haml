@@ -14,7 +14,7 @@
       if(elapsed > duration)
         $.ajax
           type: 'GET'
-          url: '/channels/'+document.channelId+'/next_slides'
+          url: '/channels/'+document.channelId+'/next_slide'
           dataType: 'json'
           statusCode:
             404: ->
