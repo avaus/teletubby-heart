@@ -33,6 +33,7 @@ group :testserver do
   gem 'therubyracer', :require => 'v8'
   gem 'passenger'
   gem 'highline'
+  gem 'capistrano'
 end
 
 group :assets do
