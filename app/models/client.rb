@@ -1,8 +1,13 @@
 class Client < ActiveRecord::Base
   attr_accessible :last_channel, :last_login, :last_slide, :last_slide_change
   attr_protected :deleted_at
-  INACTIVE = 300
 
+  before_create :set_last_slide_change_to_now
+  def set_last_slide_change_to_now
+    self.last_slide_change = Time.now
+  end
+
+  INACTIVE = 300
   def active?
     return Time.now - self[:last_slide_change].localtime < INACTIVE
   end
