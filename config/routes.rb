@@ -13,8 +13,8 @@ TeletubbyHeart::Application.routes.draw do
   match "/about" => "dashboard#about"
   match "/help" => "dashboard#help"
 
-  match "/template(/default)" => "templates#default"
-  match "/template/graph" => "templates#graph"
+  match "/templates(/default)" => "templates#default"
+  match "/templates/graph" => "templates#graph"
 
   match "/client" => "client#index"
   match "/clients" => "client#list"
