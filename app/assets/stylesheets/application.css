@@ -9,12 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require channel.css
- *= require channel_slides.css
- *= require client.css
- *= require dashboard.css
- *= require slide.css
- *= require style.css
  *= require bootstrap_and_overrides
  *= require style.css
  */
