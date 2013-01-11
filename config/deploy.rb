@@ -11,7 +11,6 @@ set :default_stage, "test_server"
 
 set :application, "Teletubby Heart"
 set :repository,  "git@github.com:Dige/project-teletubby-heart.git"
-set :user, "teletubby"
 
 set :branch, "master"
 
@@ -24,9 +23,8 @@ before "deploy:assets:precompile" do
 end
 
 # Faye worker
-set :deploy_to, "/home/teletubby/project-teletubby-heart"
-set :faye_pid, "#{deploy_to}/tmp/pids/faye.pid"
-set :faye_config, "#{deploy_to}/private_pub.ru"
+set(:faye_pid) { "#{deploy_to}/tmp/pids/faye.pid" }
+set(:faye_config) { "#{deploy_to}/private_pub.ru" }
 namespace :faye do
   desc "Start Faye"
   task :start do
