@@ -53,4 +53,14 @@ class @Helpers
       element.webkitRequestFullScreen();
 
 
+  show_error: (error_msg) ->
+    $("iframe").replaceWith(@.error_message(error_msg))
+
+  error_message: (error_msg) ->
+    return  '</br><h1 style="text-align:center;">Problems with connection, contact administrator</h1></br>
+            <h3 style="text-align:center;">error with channel id ' + error_msg + '</h3>'
+
+
+
+
 
