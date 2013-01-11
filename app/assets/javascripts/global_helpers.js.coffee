@@ -54,11 +54,13 @@ class @Helpers
 
 
   show_error: (error_msg) ->
-    $("iframe").replaceWith(@.error_message(error_msg))
+    if $("body").find("#error_msg").length == 0
+      $("body").append(@.error_message(error_msg))
+      $("#error_msg").lightbox_me()
 
   error_message: (error_msg) ->
-    return  '</br><h1 style="text-align:center;">Problems with connection, contact administrator</h1></br>
-            <h3 style="text-align:center;">error with channel id ' + error_msg + '</h3>'
+    return '<div id="error_msg" class="error_box"><h1 class="error_msg">Problems with connection, contact administrator</h1></br>
+            <h3 class="error_msg">error with channel id ' + error_msg + '</h3></div>'
 
 
 

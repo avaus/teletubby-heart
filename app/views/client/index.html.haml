@@ -9,8 +9,6 @@
     document.channelId = #{@channel.id}
     setInterval () ->
       elapsed = new Date().getTime() - startTime
-      console.log elapsed + " = elapsed"
-      console.log duration + " = duration"
       if(elapsed > duration)
         $.ajax
           type: 'GET'
