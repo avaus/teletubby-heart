@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130111081313) do
+ActiveRecord::Schema.define(:version => 20130114164104) do
 
   create_table "channel_slides", :force => true do |t|
     t.integer  "channel_id"
@@ -36,9 +36,10 @@ ActiveRecord::Schema.define(:version => 20130111081313) do
     t.integer  "last_slide"
     t.datetime "last_login"
     t.datetime "deleted_at"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
-    t.datetime "last_slide_change", :default => '2013-01-04 11:57:45', :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.datetime "last_slide_change", :null => false
+    t.text     "user_agent"
   end
 
   create_table "settings", :force => true do |t|

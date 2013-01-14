@@ -11,6 +11,7 @@
             =t(:active_client)
           -else
             =t(:inactive_client)
+          = ", User Agent: #{client.user_agent}"
           = simple_form_for client, url: {action: 'switch_channel', controller: 'client', id: client},  html:{class: 'form-horizontal'} do |f|
             = f.input :last_channel, :label => t(:current_channel), :collection => @channels, :label_method => :name, :value_method => :id
             = f.submit t(:save_client_channel), class: 'btn'

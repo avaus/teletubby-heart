@@ -13,6 +13,7 @@ class ClientController < ApplicationController
     end
     @client.last_login = Time.now
     @client.last_slide_change = Time.now
+    @client.user_agent = request.env['HTTP_USER_AGENT']
     @client.save
     cookies.permanent[:client_id] = @client.id
 
