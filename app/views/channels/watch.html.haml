@@ -1,4 +1,4 @@
-%iframe{:id => "channel", :src => @current_slide.url, :width => "100%", :height => "100%"}
+%iframe{:id => "channel", :src => @current_slide.url, :frameborder => "no",:width => "100%", :height => "100%", :scrolling => "no" }
 = subscribe_to "/channels/#{@channel.id}"
 :coffeescript
   $(document).ready ->
