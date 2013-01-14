@@ -9,6 +9,7 @@ TeletubbyHeart::Application.routes.draw do
   end
 
   resources :slides
+  match '/slides/update_type_selection/:type', :controller=>'slides', :action=>'update_type_selection'
 
   match "/about" => "dashboard#about"
   match "/help" => "dashboard#help"

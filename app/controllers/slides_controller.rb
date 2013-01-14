@@ -49,6 +49,16 @@ class SlidesController < ApplicationController
     end
   end
 
+  def update_type_selection
+    model = params[:type].constantize
+    @slide = model.new()
+    if params[:type] == "UrlSlide"  then
+      render :partial => "url_slide"
+    elsif params[:type] == "ImageSlide" then
+      render :partial => "image_slide"
+    end
+  end
+
   respond_to :json, :html
   def destroy
     @slide = Slide.find(params[:id])
