@@ -1,8 +1,9 @@
 = simple_form_for(@slide, html:{class: 'form-horizontal', :multipart => true}) do |f|
   = f.input :name
-  = image_tag @slide.image.url
+  = image_tag @slide.image.url(:medium)
   = f.file_field :image
   = f.input :duration, as: :integer
+  = f.hidden_field :type
   - if @slide.new_record?
     = f.submit t(:create), class: 'btn'
   - else

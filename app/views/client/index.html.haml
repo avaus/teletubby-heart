@@ -18,12 +18,12 @@
             404: ->
               helper.show_error(document.channelId)
               duration = duration * 2
-
             200: ->
           success: (data) ->
             duration = data.duration * 1000
             startTime = new Date().getTime()
-            $('#channel').attr('src', data.url).hide()
+            url = data.url
+            $('#channel').attr('src', url).hide()
             setTimeout(()->
               $('#channel').fadeIn()
             , 500)

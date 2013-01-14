@@ -34,7 +34,8 @@ class SlidesController < ApplicationController
   end
 
   def update
-    @slide = UrlSlide.find(params[:id])
+    model = params[:slide][:type].constantize
+    @slide = model.find(params[:id])
     if @slide.update_attributes(params[:slide].select { |k, _| k != :type })
       flash[:notice] = t(:slide_updated)
       respond_to do |format|
