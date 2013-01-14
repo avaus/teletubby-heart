@@ -3,11 +3,16 @@
   padding: 0px;
 }
 
+.navbar-inner{
+  padding-left: 1% !important;
+}
+
 body{
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    background: DarkGrey;
+  padding-top: 70px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: DarkGrey;
 }
 
 ul{
@@ -20,10 +25,6 @@ ul.slides{
 
 li{
   list-style: none;
-}
-
-#rbtn{
-  border-left: 1px solid DarkGrey;
 }
 
 li.header-button:hover {
@@ -49,20 +50,6 @@ p.def {
 
 a{
   word-wrap:break-word;
-}
-
-.navbar{
-  padding-bottom: 20px;
-}
-
-#content{
-  top: 0px;
-  margin: 0 1em;
-  height: 88%;
-}
-
-#content.dashboard {
-  margin: 0;
 }
 
 .container-fluid,.row-fluid{
@@ -92,6 +79,15 @@ a{
   behavior: url(/assets/PIE.htc);
 }
 
+.span5{
+  position: relative;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  border-radius: 6px;
+  behavior: url(/assets/PIE.htc);
+}
+
 .span6{
   position: relative;
   -moz-border-radius: 6px;
@@ -101,7 +97,8 @@ a{
   behavior: url(/assets/PIE.htc);
 }
 
-.btn-group{
+.hdr{
+  padding-bottom: 15px;
 }
 
 i{
@@ -152,14 +149,27 @@ a.disabled-link:hover {
     background-color:#d9d9d9 !important;
     color:#aaa !important;
 }
+
+#content{
+  top: 0px;
+  margin: 0 1em;
+  height: 88%;
+}
+
 #content:-webkit-full-screen {
   width: 100%;
   height: 100%;
 }
+
+#content.dashboard{
+  margin: 0;
+}
+
 .fullscreen:-moz-full-screen {
   width: 100%;
   height: 100%;
 }
+
 .error_box{
   border-radius: 30px;
   position: fixed;
@@ -170,6 +180,7 @@ a.disabled-link:hover {
   color: white;
   background-color: black;
 }
+
 .error_msg{
   text-align: center;
 }

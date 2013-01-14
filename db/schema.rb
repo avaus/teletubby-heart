@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(:version => 20130111081313) do
     t.integer  "last_slide"
     t.datetime "last_login"
     t.datetime "deleted_at"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.datetime "last_slide_change", :null => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
+    t.datetime "last_slide_change", :default => '2013-01-04 11:57:45', :null => false
   end
 
   create_table "settings", :force => true do |t|

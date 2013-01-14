@@ -1,10 +1,10 @@
 - action = if @slide.new_record? then "create" else "update" end
-= simple_form_for(@slide, html:{class: 'form-horizontal'}) do |f|
+= simple_form_for(@slide) do |f|
   = f.input :type, collection: [['Web page', 'UrlSlide']], as: :select, include_blank: false if @slide.new_record?
   = f.input :name
   = f.input :url, as: :string, required: true
   = f.input :duration, as: :integer
   - if @slide.new_record?
-    = f.submit t(:create), class: 'btn'
+    = f.submit t(:create_new_slide), class: 'btn'
   - else
     = f.submit t(:save_changes), class: 'btn'

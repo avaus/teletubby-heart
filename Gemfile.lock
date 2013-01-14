@@ -108,6 +108,10 @@ GEM
     less-rails (2.2.6)
       actionpack (>= 3.1)
       less (~> 2.2.0)
+    less-rails-bootstrap (2.1.1)
+      less-rails (~> 2.2.0)
+    less-rails-bootswatch (0.3.4)
+      less-rails-bootstrap (~> 2.1.0)
     libv8 (3.3.10.4)
     libwebsocket (0.1.5)
       addressable
@@ -241,6 +245,7 @@ DEPENDENCIES
   kaminari
   ledermann-rails-settings
   less-rails
+  less-rails-bootswatch
   passenger
   pg
   pie-rails

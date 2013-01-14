@@ -1,7 +1,7 @@
 .span6.well.well-small
   %div
-    %h1
+    %h1.hdr
       = t(:create_new_channel)
-    = simple_form_for(@channel, html:{class: 'form-search'}) do |f|
+    = simple_form_for(@channel) do |f|
       = f.input :name
       = f.submit class: "btn"
