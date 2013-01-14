@@ -13,6 +13,7 @@ gem 'kaminari'
 gem 'dynamic_form'
 gem 'acts_as_list'
 gem 'rvm-capistrano'
+gem "paperclip", "~> 3.0"
 
 gem 'simple_form'
 
