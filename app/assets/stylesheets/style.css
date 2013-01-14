@@ -3,16 +3,21 @@
   padding: 0px;
 }
 
+html{
+  height: 100%;
+}
+
+.navbar{
+  margin-bottom: 0;
+}
+
 .navbar-inner{
   padding-left: 1% !important;
 }
 
 body{
-  padding-top: 70px;
-  height: 100%;
   width: 100%;
-  position: absolute;
-  background: DarkGrey;
+  height: 100%;
 }
 
 ul{
@@ -33,6 +38,14 @@ li.header-button:hover {
   box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
+h4{
+  font-size: 180%;
+  width: super;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 h5{
   font-size: 150%;
 }
@@ -44,8 +57,10 @@ p.create-channel{
 }
 
 p.def {
-  font-size: 70%;
-  float: right;
+  font-size: 60%;
+  position: fixed;
+  float: bottom;
+  padding-top: 3px;
 }
 
 a{
@@ -53,24 +68,28 @@ a{
 }
 
 .container-fluid,.row-fluid{
-  top: 0px;
+  width: 100%;
+  position: absolute;
+  top: 70px;
   bottom: 0px;
-  height: 100%;
 }
 
 .span1{
-  height: 100%;
-  padding-top: 8em;
-  font-size: 50px;
+  height: 97%;
+  font-size: 30px;
+  text-align: center;
+  line-height: 100%;
 }
 
 .span1:hover{
-  background-color: LightGray;
+  background-color: rgb(58, 63, 68);
   opacity: 0.8;
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
 }
 
 .span2{
-  height: 100%;
+  height: 97%;
   position: relative;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
@@ -80,6 +99,7 @@ a{
 }
 
 .span5{
+  padding-left: 15px;
   position: relative;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
@@ -89,6 +109,7 @@ a{
 }
 
 .span6{
+  padding-left: 15px;
   position: relative;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
@@ -99,6 +120,10 @@ a{
 
 .hdr{
   padding-bottom: 15px;
+}
+
+.btn-group{
+  padding-top: 4px;
 }
 
 i{
@@ -117,21 +142,16 @@ i.icon-plus{
   float: left;
 }
 
-.icon-arrow-left{
-  float: left;
-  margin-left: 50%;
-  vertical-align: middle;
-}
-
-.icon-arrow-right{
-  float: right;
-  margin-right: 50%;
-}
-
 .icon-chevron-left{
+  position: absolute;
+  top: 50%;
+  text-align: center;
 }
 
 .icon-chevron-right{
+  position: absolute;
+  top: 50%;
+  text-align: center;
 }
 
 .float-left{
@@ -146,23 +166,19 @@ a.disabled-link,
 a.disabled-link:visited ,
 a.disabled-link:active,
 a.disabled-link:hover {
-    background-color:#d9d9d9 !important;
-    color:#aaa !important;
+  background-color:#d9d9d9 !important;
+  color:#aaa !important;
 }
 
 #content{
-  top: 0px;
-  margin: 0 1em;
-  height: 88%;
+}
+
+#content.dashboard{
 }
 
 #content:-webkit-full-screen {
   width: 100%;
   height: 100%;
-}
-
-#content.dashboard{
-  margin: 0;
 }
 
 .fullscreen:-moz-full-screen {
