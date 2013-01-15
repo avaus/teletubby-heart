@@ -1,10 +1,13 @@
 %h2
   = t(:slide_listing)
-%ol#slide_list
+%ol.slide_list{class: "#{slide_list_class}"}
   - slides.each do |slide|
-    %li{style: "clear: both"}
-      .span4
+    %li.slide_item.well-small
+      %div.slide_name
         = link_to slide.name, url_for(slide)
-      .span4
+      %div.remove_slide.pull-left
         - if dest_channel
           = link_to(t(:add_to_channel), {:controller => 'channel_slides', :action => 'create', :slide_id => slide.id, :channel_id => dest_channel.id}, {:method => 'post'})
+      %div
+        %p
+          add to channel

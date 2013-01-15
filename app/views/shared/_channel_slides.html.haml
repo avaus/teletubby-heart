@@ -1,6 +1,6 @@
 %h2
   = t(:channel_slides)
-%ol#slide_list.slide_list
+%ol.slide_list{class: "#{slide_list_class}"}
   - channel_slides.each do |slide_relation|
     %li.slide_item.well-small
       %div.slide_name
