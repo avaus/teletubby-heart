@@ -2,17 +2,28 @@
 = subscribe_to "/channels/#{@channel.id}"
 :coffeescript
   $(document).ready ->
+    helper = new Helpers()
     startTime = new Date().getTime()
     duration = #{@current_slide.duration*1000}
+    document.channelId = #{@channel.id}
     setInterval () ->
       elapsed = new Date().getTime() - startTime
       if(elapsed > duration)
         $.ajax
           type: 'GET'
-          url: '/channels/#{@channel.id}/next_slide'
+          url: '/channels/'+document.channelId+'/next_slide'
           dataType: 'json'
+          statusCode:
+            404: ->
+              helper.show_error(document.channelId)
+              duration = duration * 2
+            200: ->
           success: (data) ->
             duration = data.duration * 1000
             startTime = new Date().getTime()
-            $('#channel').attr('src', data.url)
+            url = data.url
+            $('#channel').attr('src', url).hide()
+            setTimeout(()->
+              $('#channel').fadeIn()
+            , 500)
     , 1000
