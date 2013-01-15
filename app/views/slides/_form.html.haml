@@ -3,6 +3,7 @@
   = f.input :type, :input_html => { :id => "typeDropDown" }, collection: [['Web page', 'UrlSlide'],['Image', 'ImageSlide']], as: :select, include_blank: false if @slide.new_record?
   %div{:id => 'slideForm'}
     - if @slide.new_record?
+      - @slide.type = "UrlSlide"
       = render partial: "url_slide"
     - elsif @slide.type == "UrlSlide"
       = render partial: "url_slide"
