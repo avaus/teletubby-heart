@@ -29,9 +29,9 @@ describe "Slide" do
     end
     it "should have an image if it is an image slide" do
       slide = ImageSlide.new(name: "image")
+      slide.url.should eq(slide.image.url)
       slide.should_not be_valid
     end
-    it "should have "
 
   end
 
