@@ -88,7 +88,7 @@ class ChannelsController < ApplicationController
       client.last_slide_change = Time.now #we need to do this if there is a client looping the same slide all over again
       client.save
     end
-    respond_with(@current_slide)
+    respond_with(@current_slide.to_json(methods: ['type'])) #Virtual attributes need to be added explicitly
   end
 
   respond_to :json, :html
