@@ -27,6 +27,11 @@ describe "Slide" do
       slide.should be_valid
       slide.duration.should eq(10)
     end
+    it "should have an image if it is an image slide" do
+      slide = ImageSlide.new(name: "image")
+      slide.should_not be_valid
+    end
+    it "should have "
 
   end
 

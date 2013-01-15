@@ -40,6 +40,8 @@ describe SlidesController do
     end
   end
 
+
+
   describe "Slide listing" do
     before :each do
       3.times do
@@ -111,7 +113,7 @@ describe SlidesController do
     end
   end
 
-describe "Delete slide" do
+  describe "Delete slide" do
     before :each do
       @slide = UrlSlide.create!(name: "test_slide")
       @channel = Channel.create!(name: "channel")
@@ -137,4 +139,15 @@ describe "Delete slide" do
 
   end
 
+  describe "update type selection" do
+    it "should update the selected type" do
+      put :update_type_selection, {type: "UrlSlide"}
+      response.should render_template(:partial => "slides/_url_slide")
+    end
+    it "should update the selected type" do
+      put :update_type_selection, {type: "ImageSlide"}
+      response.should render_template(:partial => "slides/_image_slide")
+    end
+    
+  end
 end
