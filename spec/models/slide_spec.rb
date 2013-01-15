@@ -27,12 +27,16 @@ describe "Slide" do
       slide.should be_valid
       slide.duration.should eq(10)
     end
-    it "should have an image if it is an image slide" do
+    it "should not be valid without an image if it is an image slide" do
       slide = ImageSlide.new(name: "image")
       slide.url.should eq(slide.image.url)
       slide.should_not be_valid
     end
-
+    it "should have a youtube id if it is a youtube slide" do
+      slide = YoutubeSlide.new(name: "yt", youtube: "asdfghjk")
+      slide.url.should eq("http://www.youtube.com/embed/#{slide.youtube}?enablejsapi=1&autoplay=1")
+      slide.should be_valid
+    end
   end
 
   describe "deletion" do

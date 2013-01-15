@@ -20,7 +20,7 @@ describe SlidesController do
 
     it "should be able to create by html" do
       lambda {
-        post :create, slide: { type: "UrlSlide", name: "Foobar", url: "http://www.example.com" }, format: :html
+        post :create, slide: { type: "YoutubeSlide", name: "Foobar", youtube: "asdfghjk" }, format: :html
       }.should change(Slide, :count).by(1)
       response.status.should == 302
     end
@@ -63,7 +63,7 @@ describe SlidesController do
 
   describe "Show slide" do
     before :each do
-      @slide = UrlSlide.create!(name: "Testi")
+      @slide = YoutubeSlide.create!(name: "Testi")
     end
 
     it "should assign the correct slide" do
@@ -140,13 +140,17 @@ describe SlidesController do
   end
 
   describe "update type selection" do
-    it "should update the selected type" do
+    it "should update the selected type: url" do
       put :update_type_selection, {type: "UrlSlide"}
       response.should render_template(:partial => "slides/_url_slide")
     end
-    it "should update the selected type" do
+    it "should update the selected type: image" do
       put :update_type_selection, {type: "ImageSlide"}
       response.should render_template(:partial => "slides/_image_slide")
+    end
+    it "should update the selected type: youtube" do
+      put :update_type_selection, {type: "YoutubeSlide"}
+      response.should render_template(:partial => "slides/_youtube_slide")
     end
     
   end

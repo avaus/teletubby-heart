@@ -7,3 +7,14 @@ $ ->
     type = $('select#typeDropDown :selected').val()
     jQuery.get '/slides/update_type_selection/'+ type, (data) ->
       $("#slideForm").html(data)
+
+#      if(data.type == "YoutubeSlide")
+#              YT_ready ->
+#                frameID = getFrameID("channel")
+#                if(frameID)
+#                  player = new YT.Player(frameID, () ->
+#                    events: () ->
+#                      "onStateChange": (event) ->
+#                        if(event.data == 0)
+#                          alert "moi"
+#                  )
