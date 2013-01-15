@@ -23,14 +23,16 @@
     $("#slide_list").sortable
       revert: true
       update: (event, ui) ->
+        $("#slide_list").sortable( "disable" );
         id = ui.item.find( "[controller='channel_slides']" ).first().attr("id")
         $.ajax
           type: "PUT"
           data: 'new_position='+ui.item.index()
           url: "/channels/#{@channel.id}/slides/"+id
           succeess: () ->
-            console.log("jea")
+            $("#slide_list").sortable("enable");
           error: () ->
-            console.log("fail")
+          complete: () ->
+            $("#slide_list").sortable("enable");
 
     $("#slide_list").draggable
