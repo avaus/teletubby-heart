@@ -83,28 +83,28 @@ describe SlidesController do
     end
 
     it "should render edit view when update fails with html" do
-      put :update, id: @slide, slide: {name: ""}, format: :html
+      put :update, id: @slide, slide: {name: "", type: "UrlSlide"}, format: :html
       @slide.reload
       @slide.name.should == "test_slide"
       response.should render_template :show
     end
 
     it "should render edit view when update is ok html" do
-      put :update, id: @slide, slide: {name: "new_name"}, format: :html
+      put :update, id: @slide, slide: {name: "new_name", type: "UrlSlide"}, format: :html
       @slide.reload
       @slide.name.should == "new_name"
       response.should render_template :show
     end
 
     it "should return 400 when update fails with json" do
-      put :update, id: @slide, slide: {name: ""}, format: :json
+      put :update, id: @slide, slide: {name: "", type: "UrlSlide"}, format: :json
       @slide.reload
       @slide.name.should == "test_slide"
       response.status.should == 400
     end
 
     it "should be success when update is ok with json" do
-      put :update, id: @slide, slide: {name: "new_name"}, format: :json
+      put :update, id: @slide, slide: {name: "new_name", type: "UrlSlide"}, format: :json
       @slide.reload
       @slide.name.should == "new_name"
       response.should be_success

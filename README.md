@@ -10,6 +10,7 @@ Requirements
 
 * Ruby 1.9.3
 * Bundler
+* ImageMagick
 
 Installation
 ------------
