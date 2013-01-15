@@ -200,3 +200,20 @@ a.disabled-link:hover {
 .error_msg{
   text-align: center;
 }
+.slide_item{
+  margin-bottom: 8px;
+  background-color: #B0B0B0 ;
+  clear: both;
+}
+.well-small{
+}
+.slide_name{
+  float: left;
+}
+.remove_slide{
+  margin-left: 50px;
+}
+.black-text, .black-text:hover{
+  color: black;
+  font-weight: bold;
+}

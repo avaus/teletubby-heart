@@ -32,9 +32,8 @@ class ChannelSlidesController < ApplicationController
   end
 
   def update
-    @channel_slide = ChannelSlide.find(params[:id])
-    position_ok = update_position(@channel_slide, params[:channel_slide].delete(:position))
-    @channel_slide.update_attributes(params[:channel_slide])
+    @channel_slide = ChannelSlide.find(params[:id]) #löytää väärän
+    position_ok = update_positions(@channel_slide, params[:new_position])
     if position_ok && @channel_slide.save
       respond_to do |format|
         format.html { redirect_to channel_url(@channel_slide.channel) }
@@ -49,13 +48,26 @@ class ChannelSlidesController < ApplicationController
   end
 
   private
-  def update_position(channel_slide, position)
-    return true if position.blank?
-    if position.to_i > 0
-      channel_slide.set_list_position(position)
-      return true
-    else
-      return false
+
+  def update_positions(channel_slide, new_position)
+    channel_slides = ChannelSlide.where(channel_id: channel_slide.channel_id)
+    old_position = channel_slide.position.to_i
+    new_position = new_position.to_i+1
+
+    channel_slides.each do |channel_slide|
+      position = channel_slide.position
+      if new_position > old_position
+        if position > old_position and position <= new_position
+          channel_slide.update_attribute(:position, channel_slide.position-1)
+        end
+      else
+        if position < old_position and position >= new_position
+          channel_slide.update_attribute(:position, channel_slide.position+1)
+        end
+      end
     end
+    channel_slide.update_attributes(position: new_position)
+    return true
   end
+
 end
