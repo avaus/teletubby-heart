@@ -24,15 +24,15 @@ class ChannelSlidesController < ApplicationController
   end
 
   def destroy
-    channel_slide = ChannelSlide.find(params[:id]).destroy
+    @channel_slide = ChannelSlide.find(params[:id]).destroy
     respond_to do |format|
-      format.html { redirect_to channel_url(channel_slide.channel) }
+      format.html { redirect_to channel_url(@channel_slide.channel_id), :status => 303 }
       format.json { render status: 204, json: nil }
     end
   end
 
   def update
-    @channel_slide = ChannelSlide.find(params[:id]) #löytää väärän
+    @channel_slide = ChannelSlide.find(params[:id])
     position_ok = update_positions(@channel_slide, params[:new_position])
     if position_ok && @channel_slide.save
       respond_to do |format|

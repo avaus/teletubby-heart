@@ -1,8 +1,8 @@
 %h2
   = t(:slide_listing)
-%ol.slide_list{class: "#{slide_list_class}"}
+%ol.slide_list.all_slides
   - slides.each do |slide|
-    %li.slide_item.well-small
+    %li.slide_item.all_slide.well-small
       %div.slide_name
         = link_to slide.name, url_for(slide)
       %div.remove_slide.pull-left

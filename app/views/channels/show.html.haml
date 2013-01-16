@@ -13,26 +13,60 @@
       = form_tag({controller: "channels", action: "destroy", id: @channel}, { method: "delete"}) do
         = submit_tag(t(:delete), confirm: I18n.t(:channel_deletion_confirmation, name: @channel.name), class: "btn btn-danger")
   .well.well-small
-    = render partial: "shared/channel_slides", locals: { channel_slides: @channel.channel_slides}
+    = render partial: "shared/channel_slides", locals: { channel_slides: @channel.channel_slides, slide_list_class: "channel_slides"}
 .span5.well.well-small
   %div
-    = render partial: "shared/slide_list", locals: { slides: Slide.all, dest_channel: @channel }
+    = render partial: "shared/slide_list", locals: { slides: Slide.all, dest_channel: @channel, slide_list_class: "all_slides"}
 
 :coffeescript
   $(document).ready ->
-    $("#slide_list").sortable
-      revert: true
-      update: (event, ui) ->
-        $("#slide_list").sortable( "disable" );
-        id = ui.item.find( "[controller='channel_slides']" ).first().attr("id")
-        $.ajax
-          type: "PUT"
-          data: 'new_position='+ui.item.index()
-          url: "/channels/#{@channel.id}/slides/"+id
-          succeess: () ->
-            $("#slide_list").sortable("enable");
-          error: () ->
-          complete: () ->
-            $("#slide_list").sortable("enable");
+    init_sortable= () ->
+      $(".slide_list").sortable
+        revert: true
+        update: (event, ui) ->
+          $(".channel_slides").sortable( "disable" );
+          id = ui.item.find( "[controller='channel_slides']" ).first().attr("id")
+          $.ajax
+            type: "PUT"
+            data: 'new_position='+ui.item.index()
+            url: "/channels/#{@channel.id}/slides/"+id
+            succeess: () ->
+              $(".channel_slides").sortable("enable");
+            error: () ->
+            complete: () ->
+              $(".channel_slides").sortable("enable");
 
-    $("#slide_list").draggable
+    init_droppable= () ->
+        $(".all_slides").droppable
+          accept: ".channel_slide"
+          drop: (event, ui) ->
+            id = ui.draggable.find( "[controller='channel_slides']" ).first().attr("id")
+            $.ajax
+              type: "DELETE"
+              url: "/channels/#{@channel.id}/slides/"+id
+              success: (data)->
+                updated_channels = $(data).find(".channel_slides")
+                $(".channel_slides").replaceWith(updated_channels)
+                init_sortable()
+                init_droppable()
+              error: ()->
+              complete: ()->
+
+        $(".channel_slides").droppable
+          accept: ".all_slide"
+          drop: (event, ui) ->
+            id = ui.draggable.find("a").first().attr("href").split("/")[2]
+            $.ajax
+              type: "POST"
+              data: "slide_id="+id
+              url: "/channels/#{@channel.id}/slides"
+              success: (data)->
+                updated_channels = $(data).find(".channel_slides")
+                $(".channel_slides").replaceWith(updated_channels)
+                init_droppable()
+                init_sortable()
+              error: ()->
+              complete: ()->
+
+    init_sortable()
+    init_droppable()
