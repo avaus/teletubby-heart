@@ -20,6 +20,7 @@ after "deploy", "deploy:migrate"
 after "deploy:restart", "deploy:cleanup"
 before "deploy:assets:precompile" do
  run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+ run "ln -nfs #{deploy_to}/shared/config/private_pub.yml #{release_path}/config/private_pub.yml"
 end
 
 # Faye worker

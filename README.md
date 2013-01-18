@@ -22,8 +22,11 @@ Installation
 bundle install
 ```
 
-* Rename config/database.yml.tmpl to config/database.yml
+* Rename config/database.yml.example to config/database.yml
     * Configure the database.yml if needed
+
+* Rename config/private_pub.yml.example to config/private_pub.yml
+    * Configure the private_pub.yml if needed
 
 * Migrate the development and test databases
 ```
@@ -46,9 +49,9 @@ bundle exec rspec spec/
 rails server
 ```
 
-* Start pub/sub server
+* Start pub/sub server. Change the port to 9292 on development or test environment
 ```
-rackup private_pub.ru -s thin -E production
+rackup private_pub.ru -s thin -E production -p 9290
 ```
 
 Usage
