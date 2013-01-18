@@ -25,13 +25,11 @@ bundle install
 * Rename config/database.yml.example to config/database.yml
     * Configure the database.yml if needed
 
-* Rename config/private_pub.yml.example to config/private_pub.yml
-    * Configure the private_pub.yml if needed
-
 * Migrate the development and test databases
 ```
 rake db:migrate
 RAILS_ENV=test rake db:migrate
+RAILS_ENV=production rake db:migrate
 ```
 
 * Import fixtures to the development database
@@ -44,14 +42,14 @@ rake db:seed
 bundle exec rspec spec/
 ```
 
-* Start application server 
+* Start application server. Append '-e production' if production
 ```
 rails server
 ```
 
-* Start pub/sub server. Change the port to 9292 on development or test environment
+* Start pub/sub server. Append '-p 9290' if production
 ```
-rackup private_pub.ru -s thin -E production -p 9290
+rackup private_pub.ru -s thin -E production
 ```
 
 Usage
