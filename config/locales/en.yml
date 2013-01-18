@@ -37,6 +37,7 @@ en:
   add_to_channel: "Add slide to channel"
   remove_from_channel: "Remove"
   channel_slides: "Channel's slides"
+  channel_slides_tip: "(Add slides to channel by dragging from slides listing)"
   watch: "Watch"
   watch_slideshow_tooltip: "Watch this channel on fullscreen"
   edit_channel_tooltip: "Edit the slides of this channel"

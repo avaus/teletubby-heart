@@ -1,15 +1,12 @@
 %h2
   = t(:channel_slides)
+%p
+  = t(:channel_slides_tip)
 %ol.slide_list.channel_slides
   - channel_slides.each do |slide_relation|
     %li.slide_item.channel_slide.well-small
       %div.slide_name
         = link_to slide_relation.slide.name, url_for(slide_relation.slide), :class => "black-text"
-      %div.remove_slide.pull-left
-        = link_to(t(:remove_from_channel), {controller: 'channel_slides', action: 'destroy', id: slide_relation.id, channel_id: @channel.id}, {method: 'delete'}) do
-          %i.icon-minus.pull-left
-          %p Remove Slide
-      %div.set_time
-        = link_to(t(:remove_from_channel), {controller: 'channel_slides', action: 'destroy', id: slide_relation.id, channel_id: @channel.id}, {method: 'delete'}) do
-          %p
-            MUUTETAAN AIKAA
+      = form_for "", html: {class: "hidden"} do |f|
+        = f.hidden_field "slide_id", value: slide_relation.slide_id
+        = f.hidden_field "channelslide_id", value: slide_relation.id

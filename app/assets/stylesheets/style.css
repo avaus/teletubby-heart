@@ -207,13 +207,13 @@ a.disabled-link:hover {
 }
 .well-small{
 }
-.slide_name{
-  float: left;
-}
 .remove_slide{
   margin-left: 50px;
 }
 .black-text, .black-text:hover{
   color: black;
   font-weight: bold;
+}
+.hidden{
+  display: none;
 }

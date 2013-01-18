@@ -3,11 +3,10 @@
 %ol.slide_list.all_slides
   - slides.each do |slide|
     %li.slide_item.all_slide.well-small
-      %div.slide_name
-        = link_to slide.name, url_for(slide)
-      %div.remove_slide.pull-left
-        - if dest_channel
-          = link_to(t(:add_to_channel), {:controller => 'channel_slides', :action => 'create', :slide_id => slide.id, :channel_id => dest_channel.id}, {:method => 'post'})
-      %div
-        %p
-          add to channel
+      %div.slide_name{class: "asd"}
+        = link_to slide.name, url_for(slide), :class => "black-text"
+      %form.hidden
+        %input.slide{type: "hidden"}
+          #{slide.id}
+
+

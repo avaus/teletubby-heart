@@ -25,7 +25,7 @@
         revert: true
         update: (event, ui) ->
           $(".channel_slides").sortable( "disable" );
-          id = ui.item.find( "[controller='channel_slides']" ).first().attr("id")
+          id = ui.item.find("form #_channelslide_id").val()
           $.ajax
             type: "PUT"
             data: 'new_position='+ui.item.index()
@@ -40,7 +40,8 @@
         $(".all_slides").droppable
           accept: ".channel_slide"
           drop: (event, ui) ->
-            id = ui.draggable.find( "[controller='channel_slides']" ).first().attr("id")
+
+            id = ui.draggable.find("form #_channelslide_id").val()
             $.ajax
               type: "DELETE"
               url: "/channels/#{@channel.id}/slides/"+id
