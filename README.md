@@ -17,7 +17,10 @@ Installation
 
 * Clone the repository
 
-* Run "bundle install"
+* Install gems 
+```
+bundle install
+```
 
 * Rename config/database.yml.tmpl to config/database.yml
     * Configure the database.yml if needed
@@ -33,12 +36,20 @@ RAILS_ENV=test rake db:migrate
 rake db:seed
 ```
 
-* Check that tests pass by running "bundle exec rspec spec/"
+* Check that tests pass by running 
+```
+bundle exec rspec spec/
+```
 
-* Run "rails server"
+* Start application server 
+```
+rails server
+```
 
-* Run "rackup private_pub.ru -s thin -E production"
-
+* Start pub/sub server
+```
+rackup private_pub.ru -s thin -E production
+```
 
 Usage
 -----
