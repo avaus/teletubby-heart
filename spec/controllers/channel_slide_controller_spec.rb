@@ -14,7 +14,7 @@ describe ChannelSlidesController do
       assigns(:channel_slides).should eq(@channel.channel_slides)
     end
   end
-  
+
   describe "creation" do
     it "should be able to add slide to channel by json" do
       lambda {
@@ -29,7 +29,7 @@ describe ChannelSlidesController do
       response.status.should == 302
     end
   end
-  
+
   describe "deletion" do
     it "should be able to delete slide from channel by json" do
       lambda {
@@ -42,7 +42,7 @@ describe ChannelSlidesController do
       lambda {
         post :destroy, {channel_id: @channel.id, id: @channel_slide.id, format: :html}
       }.should change(ChannelSlide, :count).by(-1)
-      response.status.should == 302
+      response.status.should == 303
     end
 
     it "should return 404 if channel_slide is not found" do
