@@ -28,7 +28,7 @@
           id = ui.item.find("form #_channelslide_id").val()
           $.ajax
             type: "PUT"
-            data: 'new_position='+ui.item.index()
+            data: 'channel_slide[position]='+ui.item.index()
             url: "/channels/#{@channel.id}/slides/"+id
             succeess: () ->
               $(".channel_slides").sortable("enable");
