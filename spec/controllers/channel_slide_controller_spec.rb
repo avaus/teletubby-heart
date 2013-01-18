@@ -69,6 +69,18 @@ describe ChannelSlidesController do
     it "should not update if nil position given" do
       put :update, {id: @channel_slide.id, channel_id: @channel.id, channel_slide: {position: "no_strings_allowed"}}, format: :html
       @channel_slide.position.should == 1
+      response.should redirect_to(channel_url(@channel_slide.channel))
+    end
+
+    it "should not update if negative position given" do
+      put :update, {id: @channel_slide.id, channel_id: @channel.id, channel_slide: {position: -1}}, format: :html
+      @channel_slide.position.should == 1
+      response.should redirect_to(channel_url(@channel_slide.channel))
+    end
+
+    it "return 400 with invalid params" do
+      put :update, {id: @channel_slide.id, channel_id: @channel.id, channel_slide: {foo: "bar"}}, format: :html
+      response.status.should == 400
     end
   end
 end

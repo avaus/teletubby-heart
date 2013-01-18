@@ -78,7 +78,7 @@ describe "Slide" do
       end
 
       it "should delete the second to last slide from default channel" do
-        slide_count = @channel.slides.size  
+        slide_count = @channel.slides.size
         @slide.destroy
         @channel.slides.size.should == slide_count - 1
       end
@@ -91,7 +91,7 @@ describe "Slide" do
         @slide2.deleted_at.should be_nil
         @channel.slides.size.should == slide_count - 1
       end
-    end    
+    end
   end
 
 end

@@ -1,5 +1,5 @@
 class ChannelsController < ApplicationController
-  layout "client", :only => [:watch, :next_slide] 
+  layout "client", :only => [:watch, :next_slide]
 
   def new
     @channel = Channel.new
@@ -35,8 +35,7 @@ class ChannelsController < ApplicationController
 
   def update
     @channel = Channel.find(params[:id])
-    @channel.update_attributes(params[:channel])
-    if @channel.save
+    if @channel.update_attributes(params[:channel])
       flash[:notice] = t(:channel_updated)
       respond_to do |format|
         format.html { render action: :show }

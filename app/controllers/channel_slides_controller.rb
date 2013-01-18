@@ -34,8 +34,7 @@ class ChannelSlidesController < ApplicationController
   def update
     @channel_slide = ChannelSlide.find(params[:id])
     position_ok = update_position(@channel_slide, params[:channel_slide].delete(:position))
-    @channel_slide.update_attributes(params[:channel_slide])
-    if position_ok && @channel_slide.save
+    if position_ok && @channel_slide.update_attributes(params[:channel_slide])
       respond_to do |format|
         format.html { redirect_to channel_url(@channel_slide.channel) }
         format.json { render json: @channel_slide }
