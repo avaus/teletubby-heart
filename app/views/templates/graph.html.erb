@@ -6,28 +6,29 @@
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <%= stylesheet_link_tag 'public/slide.css' %>
   <style>
-  body {
-    font: 10px sans-serif;
-    text-align: center;
-    margin: 0;
-  }
+    /* Use this to override default styles */
+    body {
+      font: 10px sans-serif;
+      text-align: center;
+      margin: 0;
+    }
 
-  svg {
-    margin: 0px auto;
-  }
+    svg {
+      margin: 0px auto;
+    }
 
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
-  .bar {
-    fill: steelblue;
-  }
-  .x.axis path {
-    display: none;
-  }
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+    .bar {
+      fill: steelblue;
+    }
+    .x.axis path {
+      display: none;
+    }
   </style>
 </head>
 <body>
