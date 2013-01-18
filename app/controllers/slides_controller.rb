@@ -59,6 +59,8 @@ class SlidesController < ApplicationController
       render :partial => "image_slide"
     elsif params[:type] == "YoutubeSlide" then
       render :partial => "youtube_slide"
+    elsif params[:type] == "CustomSlide" then
+      render :partial => "custom_slide"
     end
   end
 

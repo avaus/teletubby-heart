@@ -1,6 +1,6 @@
 - action = if @slide.new_record? then "create" else "update" end
 = simple_form_for(@slide, html:{class: 'form-horizontal', :multipart => true}) do |f|
-  = f.input :type, :input_html => { :id => "typeDropDown" }, collection: [['Web page', 'UrlSlide'],['Image', 'ImageSlide'],['Youtube video', 'YoutubeSlide']], as: :select, include_blank: false if @slide.new_record?
+  = f.input :type, :input_html => { :id => "typeDropDown" }, collection: [['Web page', 'UrlSlide'],['Image', 'ImageSlide'],['Youtube video', 'YoutubeSlide'],["Custom slide", "CustomSlide"]], as: :select, include_blank: false if @slide.new_record?
   %div{:id => 'slideForm'}
     - if @slide.new_record?
       - @slide.type = "UrlSlide"
@@ -11,3 +11,5 @@
       = render partial: "image_slide"
     - elsif @slide.type == "YoutubeSlide"
       = render partial: "youtube_slide"
+    - elsif @slide.type == "CustomSlide"
+      = render partial: "custom_slide"
