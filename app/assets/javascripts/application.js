@@ -16,4 +16,5 @@
 //= require twitter/bootstrap
 //= require global_helpers
 //= require private_pub
+//= require ckeditor/init
 //= require_tree .

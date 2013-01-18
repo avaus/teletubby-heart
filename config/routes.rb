@@ -1,4 +1,6 @@
 TeletubbyHeart::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+
   resources :channels do
     member do
       put 'set_as_default'
@@ -16,6 +18,7 @@ TeletubbyHeart::Application.routes.draw do
 
   match "/templates(/default)" => "templates#default"
   match "/templates/graph" => "templates#graph"
+  match "/templates/show/:html" => "templates#show"
 
   match "/client" => "client#index"
   match "/clients" => "client#list"
