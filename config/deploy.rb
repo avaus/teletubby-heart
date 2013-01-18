@@ -23,12 +23,12 @@ before "deploy:assets:precompile" do
 end
 
 # Faye worker
-set(:faye_pid) { "#{deploy_to}/tmp/pids/faye.pid" }
+set(:faye_pid) { "#{deploy_to}/current/tmp/pids/faye.pid" }
 set(:faye_config) { "#{deploy_to}/private_pub.ru" }
 namespace :faye do
   desc "Start Faye"
   task :start do
-    run "cd #{deploy_to}/ && bundle exec rackup #{faye_config} -s thin -E production -D --pid #{faye_pid}"
+    run "cd #{deploy_to}/ && bundle exec rackup #{faye_config} -s thin -E production -D --pid #{faye_pid} -p #{faye_port}"
   end
   desc "Stop Faye"
   task :stop do
