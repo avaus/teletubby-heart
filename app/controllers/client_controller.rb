@@ -42,4 +42,22 @@ class ClientController < ApplicationController
     redirect_to :controller=>'client', :action => 'list'
   end
 
+  def destroy
+    Client.find(params[:id]).destroy
+    respond_to do |format|
+      format.html { redirect_to controller: 'client', action: 'list' }
+      format.json { render status: 204, json: nil }
+    end
+  end
+
+  def destroy_inactive_clients
+    Client.find(:all).reject {|i| i.active?}.each do |c|
+      c.destroy
+    end
+    respond_to do |format|
+      format.html { redirect_to controller: 'client', action: 'list' }
+      format.json { render status: 204, json: nil }
+    end
+  end
+
 end

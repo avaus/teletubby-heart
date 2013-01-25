@@ -99,7 +99,31 @@ describe ClientController do
       client.last_login.should_not be_nil
       response.should be_success
     end
+  end
 
+  describe "Client removal" do
+    before :each do
+      3.times do
+        client = Client.create!
+        client.last_slide_change = Time.now - 1000
+        client.save
+      end
+      @client = Client.create!
+    end
+
+    it "should be able to remove a single client" do
+      lambda {
+        delete :destroy, id: @client, format: :json
+      }.should change(Client, :count).by(-1)
+      response.status.should == 204
+    end
+    
+    it "should be able to remove all inactive client" do
+      lambda {
+        delete :destroy_inactive_clients, id: @client, format: :json
+      }.should change(Client, :count).by(-3)
+      response.status.should == 204
+    end
   end
 
 end

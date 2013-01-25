@@ -25,12 +25,10 @@ describe Client do
   end
 
   describe "deletion" do
-    it "should set deleted_at timestamp when destroyed" do
+    it "should remove the client entry from database" do
       client = Client.new
       client.save
-      client.destroy
-      client.should be_valid
-      client.deleted_at.should_not be_nil
+      expect { client.destroy }.to change(Client, :count).by(-1)
     end
   end
   

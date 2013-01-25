@@ -22,6 +22,8 @@ TeletubbyHeart::Application.routes.draw do
 
   match "/client" => "client#index"
   match "/clients" => "client#list"
+  match "/client/:id/destroy" => "client#destroy"
+  match "/client/destroy_inactive_clients" => "client#destroy_inactive_clients"
   match '/client/:id/switch_channel' => 'client#switch_channel', via: :put
 
   root :to => 'dashboard#home'

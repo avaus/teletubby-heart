@@ -12,9 +12,4 @@ class Client < ActiveRecord::Base
     return Time.now - self[:last_slide_change].localtime < INACTIVE
   end
 
-  def destroy
-    self.deleted_at = Time.now
-    save
-  end
-
 end
