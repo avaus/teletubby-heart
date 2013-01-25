@@ -28,7 +28,6 @@
         accept: 'all_slides',
         receive: (event, ui) ->
             slide_id = ui.item.attr('id').substr(6)
-
         ,update: (event, ui) ->
           if slide_id
             id = slide_id
@@ -63,9 +62,12 @@
               complete: ()->
 
       $(".all_slides li").draggable
-        connectToSortable: '.channel_slides',
-        helper: 'clone',
+        connectToSortable: '.channel_slides'
+        helper: 'clone'
         rever: 'invalid'
+        start: (e, ui) ->
+          $(ui.helper).addClass("ui-draggable-helper")
+          return
       .disableSelection();
 
     init_sortable()

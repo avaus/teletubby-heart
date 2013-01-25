@@ -230,6 +230,11 @@ a.arrow {
   text-decoration: none;
 }
 
+.slide_list li:hover, .ui-draggable-helper {
+  cursor: move;
+  background-color: #606060 ;
+}
+
 .droppable-box{
   padding: 10px;
   min-height: 200px;
