@@ -1,0 +1,24 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=xset s off
+Comment=xset s off
+Exec=sudo xset s off
+Terminal=false
+Desktop Entry]
+Encoding=UTF-8
+Name=xset -dpms
+Comment=xsset -dpms
+Exec=sudo xset -dpms
+Terminal=false
+[Desktop Entry]
+Encoding=UTF-8
+Name=xset s noblank
+Comment=xset s noblank
+Exec=sudo xset s noblank
+Terminal=false
+[Desktop Entry]
+Encoding=UTF-8
+Name=Launch Midori
+Comment=Launch Midori on startup
+Exec=midori -a file://local_page.html -e Fullscreen
+Terminal=false

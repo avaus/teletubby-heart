@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Teletubby</title>
+    <script src="jquery.min.js"></script>
+    <script type="text/javascript">
+
+      var url = "REPLACE_WITH_URL";
+      var connecting_text = "Connecting to " + url;
+      var counter = 0;
+
+      $(document).ready(function () {
+        $("#connecting_text").html(connecting_text);
+        setInterval(tryToConnect, 1000);
+      });
+
+      function tryToConnect() {
+        $.ajax(url, { type:"GET", url:"/slides", dataType:"html", success: function(){ window.location = url } });
+        $("#connecting_text").html(connecting_text + " (" + ++counter + ")");
+      }
+
+    </script>
+  </head>
+  <body>
+    <p id="connecting_text"></p>
+  </body>
+</html>
