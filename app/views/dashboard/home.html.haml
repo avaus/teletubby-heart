@@ -1,6 +1,10 @@
-#previous.span1
-  = link_to do
+- if @pagination_prev
+  = link_to({'page'=> @page-1}, {id: 'previous', class: 'span1 pull-left arrow'}) do
     %i.icon-chevron-left
+- else
+  #previous.span1.pull-left
+    %i.icon-chevron-left
+
 - @channels.each do |channel|
   .span2.well.well-small
     .btn-group{style: "float: right"}
@@ -9,11 +13,12 @@
         %span.caret
       = render partial: "shared/channel_actions", locals: {channel: channel}
     .channel-header
-      %h4.hdr
-        = link_to controller: "channels", action: "show", id: channel do
-          = channel.name
+      %header.hdr
+        %h4
+          = link_to controller: "channels", action: "show", id: channel do
+            = channel.name
         - if channel.default?
-          %p.def default
+          %span.def default
       %ol
         - channel.channel_slides.each do |channel_slide|
           %li
@@ -25,10 +30,9 @@
               %i.icon-picture
             = link_to channel_slide.slide.name, url_for(channel_slide.slide)
 
-
-#next.span1.pull-right
-  = link_to do
-    - if @is_last
-      %i.icon-chevron-right{:class => "disabled-link"}
-    - else
-      %i.icon-chevron-right
+- if @pagination_next
+  = link_to({'page'=> @page+1}, {id: 'next', class: 'span1 pull-right arrow'}) do
+    %i.icon-chevron-right
+- else
+  #next.span1.pull-right
+    %i.icon-chevron-right

@@ -1,10 +1,12 @@
 *{
   margin: 0px;
   padding: 0px;
+  min-width: 870;
 }
 
 html{
   height: 100%;
+
 }
 
 .navbar{
@@ -61,11 +63,10 @@ p.create-channel{
   padding-right: 20px;
 }
 
-p.def {
-  font-size: 60%;
-  position: fixed;
-  float: bottom;
-  padding-top: 3px;
+.def {
+  font-size: 120%;
+  padding-top: 0px;
+  font-weight: bold;
 }
 
 a{
@@ -124,7 +125,7 @@ a{
 }
 
 .hdr{
-  padding-bottom: 15px;
+  padding-bottom: 5px;
 }
 
 .btn-group{
@@ -148,13 +149,13 @@ i.icon-plus{
 }
 
 .icon-chevron-left{
-  position: absolute;
+  position: relative;
   top: 50%;
   text-align: center;
 }
 
 .icon-chevron-right{
-  position: absolute;
+  position: relative;
   top: 50%;
   text-align: center;
 }
@@ -227,28 +228,6 @@ a.disabled-link:hover {
   display: none;
 }
 
-.client{
-  display: block;
-  border: 1px solid white;
-}
-
-.switch li{
-  display: inline;
-}
-
-.switch-select{
-}
-
-.switch-btn{
-}
-.droppable-box{
-  padding: 10px;
-  min-height: 200px;
-  border-style: dotted;
-  border-color: grey;
-  border-width: 2px;
- 
-
-
-
+a.arrow {
+  text-decoration: none;
 }
