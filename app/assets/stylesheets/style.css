@@ -30,6 +30,11 @@ ul.slides{
 
 li{
   list-style: none;
+
+}
+
+ol{
+  margin: 0px;
 }
 
 li.header-button:hover {
@@ -216,4 +221,16 @@ a.disabled-link:hover {
 }
 .hidden{
   display: none;
+}
+
+.droppable-box{
+  padding: 10px;
+  min-height: 200px;
+  border-style: dotted;
+  border-color: grey;
+  border-width: 2px;
+ 
+
+
+
 }

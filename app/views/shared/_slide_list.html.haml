@@ -4,7 +4,14 @@
   - slides.each do |slide|
     %li.slide_item.all_slide.well-small
       %div.slide_name{class: "asd"}
-        = link_to slide.name, url_for(slide), :class => "black-text"
+      - if slide.type == 'UrlSlide'
+        %i.icon-align-justify
+      - elsif slide.type == 'YoutubeSlide'
+        %i.icon-facetime-video
+      - elsif slide.type == 'ImageSlide'
+        %i.icon-picture
+
+      = link_to slide.name, url_for(slide), :class => "black-text"
       %form.hidden
         %input.slide{type: "hidden"}
           #{slide.id}

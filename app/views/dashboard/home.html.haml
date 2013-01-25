@@ -14,9 +14,15 @@
           = channel.name
         - if channel.default?
           %p.def default
-      %ol
+      %li
         - channel.channel_slides.each do |channel_slide|
           %li
+            - if channel_slide.slide.type == 'UrlSlide'
+              %i.icon-align-justify
+            - elsif channel_slide.slide.type == 'YoutubeSlide'
+              %i.icon-facetime-video
+            - elsif channel_slide.slide.type == 'ImageSlide'
+              %i.icon-picture
             = link_to channel_slide.slide.name, url_for(channel_slide.slide)
 
 

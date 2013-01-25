@@ -2,11 +2,18 @@
   = t(:channel_slides)
 %p
   = t(:channel_slides_tip)
-%ol.slide_list.channel_slides
+%ol.slide_list.channel_slides.droppable-box
   - channel_slides.each do |slide_relation|
     %li.slide_item.channel_slide.well-small
       %div.slide_name
+        - if slide_relation.slide.type == 'UrlSlide'
+          %i.icon-align-justify
+        - elsif slide_relation.slide.type == 'YoutubeSlide'
+          %i.icon-facetime-video
+        - elsif slide_relation.slide.type == 'ImageSlide'
+          %i.icon-picture
         = link_to slide_relation.slide.name, url_for(slide_relation.slide), :class => "black-text"
-      = form_for "", html: {class: "hidden"} do |f|
-        = f.hidden_field "slide_id", value: slide_relation.slide_id
-        = f.hidden_field "channelslide_id", value: slide_relation.id
+        = form_for "", html: {class: "hidden"} do |f|
+          = f.hidden_field "slide_id", value: slide_relation.slide_id
+          = f.hidden_field "channelslide_id", value: slide_relation.id
+
