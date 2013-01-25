@@ -229,3 +229,11 @@ a.disabled-link:hover {
 a.arrow {
   text-decoration: none;
 }
+
+.droppable-box{
+  padding: 10px;
+  min-height: 200px;
+  border-style: dotted;
+  border-color: grey;
+  border-width: 2px;
+}
