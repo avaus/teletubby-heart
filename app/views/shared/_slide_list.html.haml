@@ -2,7 +2,7 @@
   = t(:slide_listing)
 %ol.slide_list.all_slides
   - slides.each do |slide|
-    %li.slide_item.all_slide.well-small
+    %li.slide_item.all_slide.well-small{:id => "slide_#{slide.id}"}
       %div.slide_name{class: "asd"}
       - if slide.type == 'UrlSlide'
         %i.icon-align-justify

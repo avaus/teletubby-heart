@@ -69,6 +69,7 @@ class SlidesController < ApplicationController
     @slide = Slide.find(params[:id])
     @slide.destroy
     respond_to do |format|
+      format.html { redirect_to controller: 'dashboard', action: 'home' }
       format.json { render status: 204, json: nil }
     end
   rescue OnlySlideInDefaultChannelDeletionException => e

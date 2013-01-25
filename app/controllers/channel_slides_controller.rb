@@ -16,6 +16,7 @@ class ChannelSlidesController < ApplicationController
     @channel_slide = ChannelSlide.new
     @channel_slide.channel = @channel
     @channel_slide.slide = slide
+    @channel_slide.position = params[:position]
     @channel_slide.save!
     respond_to do |format|
       format.html { redirect_to channel_url(@channel) }

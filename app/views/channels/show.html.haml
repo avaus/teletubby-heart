@@ -19,25 +19,34 @@
     = render partial: "shared/slide_list", locals: { slides: Slide.all, dest_channel: @channel, slide_list_class: "all_slides"}
 
 :coffeescript
+  slide_id = false
   $(document).ready ->
     init_sortable= () ->
-      $(".slide_list").sortable
-        revert: true
-        update: (event, ui) ->
-          $(".channel_slides").sortable( "disable" );
-          id = ui.item.find("form #_channelslide_id").val()
-          $.ajax
-            type: "PUT"
-            data: 'channel_slide[position]='+ui.item.index()
-            url: "/channels/#{@channel.id}/slides/"+id
-            succeess: () ->
-              $(".channel_slides").sortable("enable");
-            error: () ->
-            complete: () ->
-              $(".channel_slides").sortable("enable");
+      $(".channel_slides").sortable
+        revert: true,
+        connectWith: '.all_slides',
+        accept: 'all_slides',
+        receive: (event, ui) ->
+            slide_id = ui.item.attr('id').substr(6)
+
+        ,update: (event, ui) ->
+          if slide_id
+            id = slide_id
+            slide_id = null
+            $.ajax
+                type: "POST"
+                data: {slide_id: id, position: parseInt(ui.item.index()+1)}
+                url: "/channels/#{@channel.id}/slides"
+          else
+            id = ui.item.find("form #_channelslide_id").val()
+            $.ajax
+              type: "PUT"
+              data: 'channel_slide[position]='+parseInt(ui.item.index()+1)
+              url: "/channels/#{@channel.id}/slides/"+id
+      .disableSelection();
 
     init_droppable= () ->
-        $(".all_slides").droppable
+      $(".all_slides").droppable
           accept: ".channel_slide"
           drop: (event, ui) ->
 
@@ -53,21 +62,11 @@
               error: ()->
               complete: ()->
 
-        $(".channel_slides").droppable
-          accept: ".all_slide"
-          drop: (event, ui) ->
-            id = ui.draggable.find("a").first().attr("href").split("/")[2]
-            $.ajax
-              type: "POST"
-              data: "slide_id="+id
-              url: "/channels/#{@channel.id}/slides"
-              success: (data)->
-                updated_channels = $(data).find(".channel_slides")
-                $(".channel_slides").replaceWith(updated_channels)
-                init_droppable()
-                init_sortable()
-              error: ()->
-              complete: ()->
+      $(".all_slides li").draggable
+        connectToSortable: '.channel_slides',
+        helper: 'clone',
+        rever: 'invalid'
+      .disableSelection();
 
     init_sortable()
     init_droppable()
