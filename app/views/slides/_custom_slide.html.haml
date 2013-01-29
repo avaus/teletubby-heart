@@ -1,6 +1,7 @@
 = simple_form_for(@slide, html:{class: 'form-horizontal', :multipart => true}) do |f|
   = f.input :name
   = f.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} }
+  = f.input :style, as: :select, default: 1 ,collection: [["default", "/assets/templates/default"], ["template_1", "/assets/templates/template_1"]]
   = f.hidden_field :type
   - if @slide.new_record?
     = f.submit t(:create), class: 'btn'

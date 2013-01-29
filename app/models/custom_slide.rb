@@ -1,6 +1,8 @@
 class CustomSlide < Slide
-  attr_accessible :content
+  attr_accessible :content, :style
   validates :content, presence: true
+  validates :style, presence: true
+
 
 
   def self.model_name
@@ -10,5 +12,4 @@ class CustomSlide < Slide
   def url
     return "custom_slide/#{self.id}"
   end
-
 end
