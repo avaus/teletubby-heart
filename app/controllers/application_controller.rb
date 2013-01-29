@@ -24,8 +24,4 @@ class ApplicationController < ActionController::Base
       format.json { render status: 404, json: {'message' => "Forbidden parameters given"}}
     end
   end
-
-  def next_page()
-    (params[:page].to_i+1).to_s
-  end
 end
