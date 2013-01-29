@@ -24,7 +24,7 @@ class ClientController < ApplicationController
 
   respond_to :json, :html
   def list
-    @clients = Client.find(:all, :order => "id")
+    @clients = Client.find(:all, :order => "name")
     @channels = Channel.all
     respond_to do |format|
         format.html { }

@@ -22,7 +22,7 @@ describe ClientController do
       3.times do
         Client.create!
       end
-      @clients = Client.find(:all, :order => "id")
+      @clients = Client.find(:all, :order => "name")
     end
 
     it "response should be successful" do
@@ -30,7 +30,7 @@ describe ClientController do
       response.should be_success
     end
 
-    it "should list all the clients ordered by ID" do
+    it "should list all the clients ordered by Name" do
       get :list
       assigns(:clients).should eq(@clients)
     end
