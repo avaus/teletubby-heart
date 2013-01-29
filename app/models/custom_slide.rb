@@ -7,4 +7,8 @@ class CustomSlide < Slide
     Slide.model_name
   end
 
+  def url
+    return "custom_slide/#{self.id}"
+  end
+
 end

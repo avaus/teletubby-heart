@@ -20,6 +20,8 @@ TeletubbyHeart::Application.routes.draw do
   match "/templates/graph" => "templates#graph"
   match "/templates/show/:html" => "templates#show"
 
+  match "/custom_slide/:id" => "custom_slides#show"
+
   match "/client" => "client#index"
   match "/clients" => "client#list"
   match "/client/:id/destroy" => "client#destroy"

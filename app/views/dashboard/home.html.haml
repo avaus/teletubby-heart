@@ -24,6 +24,8 @@
           %li
             - if channel_slide.slide.type == 'UrlSlide'
               %i.icon-align-justify
+            - if channel_slide.slide.type == 'CustomSlide'
+              %i.icon-info-sign
             - elsif channel_slide.slide.type == 'YoutubeSlide'
               %i.icon-facetime-video
             - elsif channel_slide.slide.type == 'ImageSlide'
