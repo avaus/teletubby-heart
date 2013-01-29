@@ -33,8 +33,8 @@ describe "Slide" do
       slide.should_not be_valid
     end
     it "should have a youtube id if it is a youtube slide" do
-      slide = YoutubeSlide.new(name: "yt", youtube: "asdfghjk")
-      slide.url.should eq("http://www.youtube.com/embed/#{slide.youtube}?enablejsapi=1&autoplay=1")
+      slide = YoutubeSlide.new(name: "yt", youtube: "http://www.youtube.com/watch?v=_Q2LKGfhVwg")
+      slide.url.should eq("http://www.youtube.com/embed/#{slide.parse_youtube(slide.youtube)}?enablejsapi=1&autoplay=1")
       slide.should be_valid
     end
   end
