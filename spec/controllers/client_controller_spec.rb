@@ -126,4 +126,15 @@ describe ClientController do
     end
   end
 
+  describe "Client rename" do
+    before :each do
+      @client = Client.create!
+    end
+
+    it "should rename the client via html" do
+      lambda {
+        post :rename, id: @client.id, client: { name: "Test" }, format: :html
+      }.should change(@client, :name).to("Test")
+    end
+  end
 end
