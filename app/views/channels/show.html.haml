@@ -16,7 +16,7 @@
     = render partial: "shared/channel_slides", locals: { channel_slides: @channel.channel_slides, slide_list_class: "channel_slides"}
 .span5.well.well-small
   %div
-    = render partial: "shared/slide_list", locals: { slides: Slide.all, dest_channel: @channel, slide_list_class: "all_slides"}
+    = render partial: "shared/slide_list", locals: { slides: Slide.find(:all, :order => "name"), dest_channel: @channel, slide_list_class: "all_slides"}
 
 :coffeescript
   slide_id = false
