@@ -212,8 +212,8 @@ a.disabled-link:hover {
   clear: both;
 }
 .well-small{
-
-  margin: 3px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 .remove_slide{
   margin-left: 50px;
