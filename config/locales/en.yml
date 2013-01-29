@@ -5,6 +5,7 @@ en:
   hello: "Hello world"
   title: "Tubby!"
   about: "About"
+  channels: "Channel List"
   clients: "Client List"
   help: "Help"
   create_new_channel: "Create channel"

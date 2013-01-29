@@ -3,6 +3,8 @@
     = link_to t(:title), "/", :class => "brand"
     %ul.nav
       %li
+        = link_to t(:channels), "/"
+      %li
         = link_to t(:clients), :controller => "client", :action => "list"
       %li
         = link_to t(:about), :controller => "dashboard", :action => "about"
