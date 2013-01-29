@@ -10,6 +10,6 @@ class CustomSlide < Slide
   end
 
   def url
-    return "custom_slide/#{self.id}"
+    return "/custom_slide/#{self.id}"
   end
 end
