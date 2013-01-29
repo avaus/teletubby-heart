@@ -132,9 +132,9 @@ describe ClientController do
     end
 
     it "should rename the client via html" do
-      lambda {
-        post :rename, id: @client.id, client: { name: "Test" }, format: :html
-      }.should change(@client, :name).to("Test")
+      put :rename, id: @client.id, client: { name: "Test" }, format: :html
+      @client.reload
+      @client.name.should == "Test"
     end
   end
 end
