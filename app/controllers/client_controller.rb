@@ -60,4 +60,14 @@ class ClientController < ApplicationController
     end
   end
 
+  def rename
+    @client = Client.find(params[:id])
+    @client.name = params[:client][:name]
+    @client.save
+    respond_to do |format|
+      format.html { redirect_to controller: 'client', action: 'list' }
+      format.json { render status: 204, json: nil}
+    end
+  end
+
 end
