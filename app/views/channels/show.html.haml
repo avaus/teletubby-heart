@@ -34,13 +34,13 @@
             slide_id = null
             $.ajax
                 type: "POST"
-                data: {slide_id: id, position: parseInt(ui.item.index()+1)}
+                data: {slide_id: id, position: parseInt(ui.item.index())}
                 url: "/channels/#{@channel.id}/slides"
           else
             id = ui.item.find("form #_channelslide_id").val()
             $.ajax
               type: "PUT"
-              data: 'channel_slide[position]='+parseInt(ui.item.index()+1)
+              data: 'channel_slide[position]='+parseInt(ui.item.index())
               url: "/channels/#{@channel.id}/slides/"+id
       .disableSelection();
 
