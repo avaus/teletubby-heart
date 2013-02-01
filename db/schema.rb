@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(:version => 20130129190241) do
 
   create_table "slides", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.datetime "deleted_at"
     t.string   "type"
     t.text     "url",                :default => "UrlSlide"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20130129190241) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.text     "youtube",            :default => "Youtube id"
+    t.text     "youtube",            :default => "Youtube url"
     t.string   "content"
     t.string   "style"
   end
