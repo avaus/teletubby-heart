@@ -4,7 +4,7 @@ Name=xset s off
 Comment=xset s off
 Exec=sudo xset s off
 Terminal=false
-Desktop Entry]
+[Desktop Entry]
 Encoding=UTF-8
 Name=xset -dpms
 Comment=xsset -dpms
@@ -20,5 +20,5 @@ Terminal=false
 Encoding=UTF-8
 Name=Launch Midori
 Comment=Launch Midori on startup
-Exec=midori -a file://local_page.html -e Fullscreen
+Exec=midori -a file:///home/pi/local_page.html -e Fullscreen
 Terminal=false

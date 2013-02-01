@@ -19,10 +19,9 @@ if [ $? != 0 ]
     exit 1
 fi
 
-mkdir $mount_home/.config
-mkdir $mount_home/.config/autostart/
-cp auto.desktop $mount_home/.config/autostart/auto.desktop
+cp auto.desktop $mount_path/etc/xdg/autostart/tubby.desktop
 cp local_page.html $mount_home/local_page.html
+cp jquery.min.js $mount_home/jquery.min.js
 sed -i "s@REPLACE_WITH_URL@$1@g" $mount_home/local_page.html
 
 umount $mount_path
