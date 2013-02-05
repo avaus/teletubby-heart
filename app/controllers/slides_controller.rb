@@ -7,6 +7,7 @@ class SlidesController < ApplicationController
     model = params[:slide].delete(:type).constantize
     @slide = model.new(params[:slide])
     if @slide.save
+      flash[:notice] = t(:slide_created)
       respond_to do |format|
         format.html { redirect_to slide_url(@slide) }
         format.json { render json: @slide.to_json }

@@ -12,6 +12,7 @@ en:
   create: "Create"
   edit: "Edit"
   channel_updated: "Channel succesfully updated"
+  slide_created: "Slide succesfully created"
   slide_updated: "Slide succesfully updated"
   set_as_default: "Set as default"
   save_changes: "Save changes"
