@@ -23,6 +23,10 @@ cp auto.desktop $mount_path/etc/xdg/autostart/tubby.desktop
 cp local_page.html $mount_home/local_page.html
 cp jquery.min.js $mount_home/jquery.min.js
 sed -i "s@REPLACE_WITH_URL@$1@g" $mount_home/local_page.html
+sed -i "s@#xserver-command=X@xserver-command=X -s 0 -dpms@g" $mount_path/etc/lightdm/lightdm.conf
+mkdir $mount_home/midori_config
+echo "[settings]
+enable-universal-access-from-file-uris=true" > $mount_home/midori_config/config
 
 umount $mount_path
 rm -r $mount_path

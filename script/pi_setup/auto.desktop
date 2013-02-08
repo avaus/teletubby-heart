@@ -20,5 +20,5 @@ Terminal=false
 Encoding=UTF-8
 Name=Launch Midori
 Comment=Launch Midori on startup
-Exec=midori -a file:///home/pi/local_page.html -e Fullscreen
+Exec=midori -a file:///home/pi/local_page.html -e Fullscreen -c /home/pi/midori_config/
 Terminal=false
