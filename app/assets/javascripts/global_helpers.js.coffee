@@ -45,12 +45,23 @@ class @Helpers
   getCurrentPage: () ->
     current_page = if @getParameterByName("page") then parseInt(@getParameterByName("page")) else 1
 
-  setFullScreen: (container) ->
-    element = document.getElementById(container.toString());
-    if element.mozRequestFullScreen
-      element.mozRequestFullScreen();
-    else if element.webkitRequestFullScreen
-      element.webkitRequestFullScreen();
+  enableFullScreen: (container) ->
+    elem = document.getElementById(container.toString())
+    screenfull.request elem  if screenfull.enabled
+
+    screenfull.onchange = ->
+      if screenfull.isFullscreen
+      else
+        $.ajax
+          url: '/'
+          dataType: 'html'
+          async: true
+          success: (data) ->
+            $("#content").html(data)
+
+
+
+
 
 
   show_error: (error_msg) ->

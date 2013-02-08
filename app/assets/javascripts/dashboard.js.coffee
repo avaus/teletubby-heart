@@ -8,4 +8,4 @@ $ ->
     event.preventDefault();
     url = $(event.target).closest("a").attr("href")
     $("#content").load(url+ "#content")
-    helper.setFullScreen("content")
+    helper.enableFullScreen("content")
