@@ -49,6 +49,7 @@ h4{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 30px;
 }
 
 h5{
@@ -62,10 +63,10 @@ p.create-channel{
 }
 
 .def {
-  font-size: 120%;
-  padding-top: 0px;
+  position: absolute;
+  font-size: 110%;
   font-weight: bold;
-  margin: 10px;
+  top: 3px;
 }
 
 a{
