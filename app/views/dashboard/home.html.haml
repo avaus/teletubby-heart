@@ -18,7 +18,7 @@
           = link_to controller: "channels", action: "show", id: channel do
             = channel.name
         - if channel.default?
-          %span.def default
+          %span.def status: default
       %ol
         - channel.channel_slides.each do |channel_slide|
           %li
