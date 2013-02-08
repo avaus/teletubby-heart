@@ -5,14 +5,18 @@ class SlidesController < ApplicationController
   end
 
   def create
-    @channel_redirect_id = params[:slide].delete(:channel_redirect_id)
+    if params[:slide].has_key?("channel_redirect_id")
+      @channel_redirect_id = params[:slide].delete(:channel_redirect_id)
+    else
+      @channel_redirect_id = false
+    end
     model = params[:slide].delete(:type).constantize
     @slide = model.new(params[:slide])
     if @slide.save
       flash[:notice] = t(:slide_created)
       respond_to do |format|
         format.html {
-          if @channel_redirect_id.length > 0
+          if @channel_redirect_id
             redirect_to channel_url(Channel.find(@channel_redirect_id))
           else
             redirect_to slide_url(@slide)
@@ -26,8 +30,8 @@ class SlidesController < ApplicationController
         format.json { render status: 400, json: @slide.errors }
       end
     end
-  rescue => e
-    render_exception(Exception.new("Invalid slide type"))
+  rescue NameError => e
+    render_exception(InvalidTypeException.new())
   end
 
   respond_to :json, :html
@@ -83,5 +87,11 @@ class SlidesController < ApplicationController
     end
   rescue OnlySlideInDefaultChannelDeletionException => e
     render_exception(e)
+  end
+end
+
+class InvalidTypeException < StandardError
+  def message
+    "Invalid slide type"
   end
 end

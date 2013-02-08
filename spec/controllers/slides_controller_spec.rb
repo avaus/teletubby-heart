@@ -38,6 +38,14 @@ describe SlidesController do
       }.should change(Slide, :count).by(0)
       response.status.should == 400
     end
+
+    it "should redirect to channel if channel_redirect_id given" do
+      channel = Channel.create!(name: "Test")
+      lambda {
+        post :create, slide: { type: "YoutubeSlide", name: "Foobar", youtube: "asdfghjk", channel_redirect_id: channel.id }, format: :html
+      }.should change(Slide, :count).by(1)
+      response.status.should == 302
+    end
   end
 
 
@@ -151,6 +159,10 @@ describe SlidesController do
     it "should update the selected type: youtube" do
       put :update_type_selection, {type: "YoutubeSlide"}
       response.should render_template(:partial => "slides/_youtube_slide")
+    end
+    it "should update the selected type: CustomSlide" do
+      put :update_type_selection, {type: "CustomSlide"}
+      response.should render_template(:partial => "slides/_custom_slide")
     end
     
   end
