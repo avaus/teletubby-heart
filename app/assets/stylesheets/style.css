@@ -234,10 +234,20 @@ a.arrow {
   background-color: #606060 ;
 }
 
-.droppable-box{
-  padding: 10px;
-  min-height: 200px;
-  border-style: dotted;
-  border-color: grey;
-  border-width: 2px;
+#slides_header h2 {
+  display: inline-block;
+  width: 70%;
+}
+
+#slides_header .create_slide {
+  color: #757C82;
+  float: right;
+}
+
+.create_slide .icon-plus {
+  line-height: inherit;
+}
+
+#all_slides .icon-remove {
+  display: none;
 }

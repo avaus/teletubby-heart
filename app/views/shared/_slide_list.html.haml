@@ -1,6 +1,4 @@
-%h2
-  = t(:slide_listing)
-%ol.slide_list.all_slides
+%ol.slide_list
   - slides.each do |slide|
     %li.slide_item.all_slide.well-small{:id => "slide_#{slide.id}"}
       %div.slide_name{class: "asd"}

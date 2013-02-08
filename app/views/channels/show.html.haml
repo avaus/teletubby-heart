@@ -13,56 +13,61 @@
       = form_tag({controller: "channels", action: "destroy", id: @channel}, { method: "delete"}) do
         = submit_tag(t(:delete), confirm: I18n.t(:channel_deletion_confirmation, name: @channel.name), class: "btn btn-danger")
   .well.well-small
-    = render partial: "shared/channel_slides", locals: { channel_slides: @channel.channel_slides, slide_list_class: "channel_slides"}
-.span5.well.well-small
+    %h2
+      = t(:channel_slides)
+    %p
+      = t(:channel_slides_tip)
+    %ol.slide_list#channel_slides.droppable-box
+      - @channel.channel_slides.each do |slide_relation|
+        = render partial: "shared/draggable_slide", locals: { slide: slide_relation.slide, channel_slide_id: slide_relation.id }
+        
+.span4.well.well-small
   %div
-    = render partial: "shared/slide_list", locals: { slides: Slide.find(:all, order: "LOWER(name)"), dest_channel: @channel, slide_list_class: "all_slides"}
+    %header#slides_header
+      %h2
+        = t(:slide_listing)
+      %span.create_slide.btn.btn-success
+        = link_to controller: "slides", action: "new", channel: @channel.id do
+          %i.icon-plus
+          = t(:create_new_slide)
+    %ol.slide_list#all_slides
+      - Slide.find(:all, order: "LOWER(name)").each do |slide|
+        = render partial: "shared/draggable_slide", locals: { slide: slide, channel_slide_id: nil}
 
 :coffeescript
-  slide_id = false
+  slideToChannel = (element) ->
+    element.css('color', 'red')
   $(document).ready ->
     init_sortable= () ->
-      $(".channel_slides").sortable
-        revert: true,
-        connectWith: '.all_slides',
-        accept: 'all_slides',
-        receive: (event, ui) ->
-            slide_id = ui.item.attr('id').substr(6)
-        ,update: (event, ui) ->
-          if slide_id
-            id = slide_id
-            slide_id = null
-            $.ajax
-                type: "POST"
-                data: {slide_id: id, position: parseInt(ui.item.index())}
-                url: "/channels/#{@channel.id}/slides"
-          else
-            id = ui.item.find("form #_channelslide_id").val()
+      $("#channel_slides").sortable
+        revert: true
+        connectWith: '#all_slides'
+        accept: 'all_slides'
+        update: (event, ui) ->
+          item = ui.item.first()
+          slide_id = item.find("form #_slide_id").val()
+          channel_slide_id = item.find("form #_channelslide_id").val()
+          index = parseInt(item.index())
+          if channel_slide_id.length > 0
             $.ajax
               type: "PUT"
-              data: 'channel_slide[position]='+parseInt(ui.item.index())
-              url: "/channels/#{@channel.id}/slides/"+id
+              dataType: "json"
+              data: 'channel_slide[position]='+index
+              url: "/channels/#{@channel.id}/slides/"+channel_slide_id
+          else
+            $.ajax
+              type: "POST"
+              data: {slide_id: slide_id, position: index}
+              el: item
+              url: "/channels/#{@channel.id}/slides"
+              success: (data)->
+                updated_channels = $(data).find("#channel_slides")
+                $("#channel_slides").replaceWith(updated_channels)
+                init_sortable()
       .disableSelection();
 
-    init_droppable= () ->
-      $(".all_slides").droppable
-          accept: ".channel_slide"
-          drop: (event, ui) ->
-
-            id = ui.draggable.find("form #_channelslide_id").val()
-            $.ajax
-              type: "DELETE"
-              url: "/channels/#{@channel.id}/slides/"+id
-              success: (data)->
-                updated_channels = $(data).find(".channel_slides")
-                $(".channel_slides").replaceWith(updated_channels)
-                init_sortable()
-                init_droppable()
-              error: ()->
-              complete: ()->
-
-      $(".all_slides li").draggable
-        connectToSortable: '.channel_slides'
+      $("#all_slides li").draggable
+        connectToSortable: '#channel_slides'
         helper: 'clone'
         rever: 'invalid'
         start: (e, ui) ->
@@ -71,4 +76,3 @@
       .disableSelection();
 
     init_sortable()
-    init_droppable()

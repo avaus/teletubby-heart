@@ -1,0 +1,14 @@
+%li.slide_item.well-small
+  %div.slide_name
+  - if slide.type == 'UrlSlide'
+    %i.icon-align-justify
+  - elsif slide.type == 'YoutubeSlide'
+    %i.icon-facetime-video
+  - elsif slide.type == 'ImageSlide'
+    %i.icon-picture
+
+  = link_to slide.name, url_for(slide), :class => "black-text"
+  = form_for "", html: {class: "hidden"} do |f|
+    = f.hidden_field "channelslide_id", value: channel_slide_id
+    = f.hidden_field "slide_id", value: slide.id
+  %i.icon-remove.right-corner-button

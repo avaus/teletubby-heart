@@ -1,15 +1,23 @@
 class SlidesController < ApplicationController
   def new
     @slide = Slide.new
+    @channel_redirect_id = params[:channel]
   end
 
   def create
+    @channel_redirect_id = params[:slide].delete(:channel_redirect_id)
     model = params[:slide].delete(:type).constantize
     @slide = model.new(params[:slide])
     if @slide.save
       flash[:notice] = t(:slide_created)
       respond_to do |format|
-        format.html { redirect_to slide_url(@slide) }
+        format.html {
+          if @channel_redirect_id.length > 0
+            redirect_to channel_url(Channel.find(@channel_redirect_id))
+          else
+            redirect_to slide_url(@slide)
+          end
+        }
         format.json { render json: @slide.to_json }
       end
     else
