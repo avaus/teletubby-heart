@@ -224,6 +224,40 @@ a.disabled-link:hover {
   display: none;
 }
 
+.client{
+  display: block;
+  border: 1px solid white;
+}
+
+.client-edit{
+  height: 100%;
+  display: inline-block;
+}
+
+.switch li{
+  display: inline;
+}
+.clickable:hover{
+  cursor: pointer;
+}
+
+.clear-inactive{
+  margin-top: 5px;
+  float: right;
+}
+
+.right-corner-button{
+  float: right;
+  color: rgb(58, 63, 68);
+}
+
+.droppable-box{
+  min-height: 80px;
+  border-style: dotted;
+  border-color: rgb(58, 63, 68);
+  border-width: 2px;
+}
+
 a.arrow {
   text-decoration: none;
 }

@@ -20,7 +20,7 @@
     %ol.slide_list#channel_slides.droppable-box
       - @channel.channel_slides.each do |slide_relation|
         = render partial: "shared/draggable_slide", locals: { slide: slide_relation.slide, channel_slide_id: slide_relation.id }
-        
+
 .span4.well.well-small
   %div
     %header#slides_header
@@ -73,6 +73,23 @@
         start: (e, ui) ->
           $(ui.helper).addClass("ui-draggable-helper")
           return
+
+      $(".remove_button").bind 'click', (e)->
+        e.preventDefault()
+        channel_slide_id = $(e.target).closest("li").find("form #_channelslide_id").val()
+        $.ajax
+          url: "/channels/#{@channel.id}/slides/"+ channel_slide_id
+          data: ""
+          type: "DELETE"
+          success: (data)->
+            updated_channels = $(data).find("#channel_slides")
+            $("#channel_slides").replaceWith(updated_channels)
+            init_sortable()
+          error: (data) ->
+            alert "can't delete last slide"
+
+
       .disableSelection();
 
     init_sortable()
+

@@ -11,4 +11,5 @@
   = form_for "", html: {class: "hidden"} do |f|
     = f.hidden_field "channelslide_id", value: channel_slide_id
     = f.hidden_field "slide_id", value: slide.id
-  %i.icon-remove.right-corner-button
+
+  %i.icon-remove.right-corner-button.remove_button.clickable
