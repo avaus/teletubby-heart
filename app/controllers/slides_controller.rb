@@ -13,7 +13,6 @@ class SlidesController < ApplicationController
     model = params[:slide].delete(:type).constantize
     @slide = model.new(params[:slide])
     if @slide.save
-      flash[:notice] = t(:slide_created)
       respond_to do |format|
         format.html {
           if @channel_redirect_id
