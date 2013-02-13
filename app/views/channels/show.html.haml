@@ -1,17 +1,20 @@
 .span5.well.well-small
   %div
-    %h1
-      = I18n.t(:channel_header, name: @channel.name)
-    = simple_form_for @channel, url: {action: "update"} do |f|
-      %p
-        - if flash[:notice]
-          %strong= flash[:notice]
-        = f.input :name
-        = f.submit t(:save_changes), class: "btn"
-  -if not @channel.default?
-    .well.well-large
-      = form_tag({controller: "channels", action: "destroy", id: @channel}, { method: "delete"}) do
-        = submit_tag(t(:delete), confirm: I18n.t(:channel_deletion_confirmation, name: @channel.name), class: "btn btn-danger")
+    %header#channel_header
+      %h1
+        = I18n.t(:channel_header, name: @channel.name)
+      %button.btn.btn-warning#channel_edit_icon
+        %i.icon-edit
+          Edit
+    %div#channel_edit_forms{:class => ("hidden" unless @channel.errors.size() > 0)}
+      = simple_form_for @channel, url: {action: "update"} do |f|
+        %p
+          = f.input :name
+          = f.submit t(:save_changes), class: "btn"
+      -if not @channel.default?
+        .well.well-large
+          = form_tag({controller: "channels", action: "destroy", id: @channel}, { method: "delete"}) do
+            = submit_tag(t(:delete), confirm: I18n.t(:channel_deletion_confirmation, name: @channel.name), class: "btn btn-danger")
   .well.well-small
     %h2
       = t(:channel_slides)
@@ -92,4 +95,5 @@
       .disableSelection();
 
     init_sortable()
-
+    $('#channel_edit_icon').click ->
+      $('#channel_edit_forms').toggle()

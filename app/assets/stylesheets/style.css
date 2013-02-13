@@ -147,6 +147,12 @@ i.icon-plus{
   float: left;
 }
 
+i.client-edit{
+  float: right;
+  padding-left: 15px;
+  margin-top: 10px;
+}
+
 .icon-chevron-left{
   position: relative;
   top: 50%;
@@ -283,4 +289,6 @@ a.arrow {
 
 #all_slides .icon-remove {
   display: none;
+}
+#channel_edit_icon {
 }
