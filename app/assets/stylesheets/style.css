@@ -287,6 +287,10 @@ a.arrow {
   line-height: inherit;
 }
 
-#all_slides .icon-remove {
+#all_slides .icon-trash {
   display: none;
+}
+
+#channel_edit_icon * {
+  display: inline;
 }

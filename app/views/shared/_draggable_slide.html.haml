@@ -8,8 +8,8 @@
     %i.icon-picture
 
   = link_to slide.name, url_for(slide), :class => "black-text"
-  = form_for "", html: {class: "hidden"} do |f|
-    = f.hidden_field "channelslide_id", value: channel_slide_id
-    = f.hidden_field "slide_id", value: slide.id
+  %i.icon-trash.right-corner-button.remove_button.clickable
+  %form.slide_ids.hidden
+    %input{:type => "hidden", :name => "channelslide_id", :value => channel_slide_id}
+    %input{:type => "hidden", :name => "slide_id", :value => slide.id}
 
-  %i.icon-remove.right-corner-button.remove_button.clickable

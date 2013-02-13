@@ -1,18 +1,19 @@
-.navbar.navbar-fixed-top
-  .navbar-inner
-    = link_to t(:title), "/", class: "brand"
-    %ul.nav
-      %li
-        = link_to t(:channels), "/"
-      %li
-        = link_to t(:clients), controller: "client", action: "list"
-      %li
-        = link_to t(:about), controller: "dashboard", action: "about"
-      %li
-        = link_to t(:help), controller: "dashboard", action: "help"
-    %ul.nav.pull-right
-      %li.header-button
-        = link_to controller: "channels", action: "new" do
-          %i.icon-plus
-          %p.create-channel
-            = t(:create_new_channel)
+%header
+  %nav.navbar.navbar-fixed-top
+    .navbar-inner
+      = link_to t(:title), "/", class: "brand"
+      %ul.nav
+        %li
+          = link_to t(:channels), "/"
+        %li
+          = link_to t(:clients), controller: "client", action: "list"
+        %li
+          = link_to t(:about), controller: "dashboard", action: "about"
+        %li
+          = link_to t(:help), controller: "dashboard", action: "help"
+      %ul.nav.pull-right
+        %li.header-button
+          = link_to controller: "channels", action: "new" do
+            %i.icon-plus
+            %p.create-channel
+              = t(:create_new_channel)

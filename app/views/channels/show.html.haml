@@ -1,21 +1,21 @@
-.span5.well.well-small
-  %div
-    %header#channel_header
-      %h1
-        = I18n.t(:channel_header, name: @channel.name)
-      %button.btn.btn-warning#channel_edit_icon
-        %i.icon-edit
-          Edit
-    %div#channel_edit_forms{:class => ("hidden" unless @channel.errors.size() > 0)}
+%div.span5.well.well-small{:id => "channel_id_#{@channel.id}"}
+  %header
+    %h1
+      = I18n.t(:channel_header, name: @channel.name)
+    %button.btn.btn-warning#channel_edit_icon
+      %i.icon-edit
+      Edit
+  %div#channel_edit_forms{:class => ("hidden" unless @channel.errors.size() > 0)}
+    %div#channel_edit_form
       = simple_form_for @channel, url: {action: "update"} do |f|
-        %p
-          = f.input :name
-          = f.submit t(:save_changes), class: "btn"
-      -if not @channel.default?
-        .well.well-large
+        = f.input :name
+        = f.submit t(:save_changes), class: "btn"
+    -if not @channel.default?
+      %div#channel_delete_form
+        .well
           = form_tag({controller: "channels", action: "destroy", id: @channel}, { method: "delete"}) do
             = submit_tag(t(:delete), confirm: I18n.t(:channel_deletion_confirmation, name: @channel.name), class: "btn btn-danger")
-  .well.well-small
+  %section.well.well-small
     %h2
       = t(:channel_slides)
     %p
@@ -24,76 +24,14 @@
       - @channel.channel_slides.each do |slide_relation|
         = render partial: "shared/draggable_slide", locals: { slide: slide_relation.slide, channel_slide_id: slide_relation.id }
 
-.span4.well.well-small
-  %div
-    %header#slides_header
-      %h2
-        = t(:slide_listing)
-      %span.create_slide.btn.btn-success
-        = link_to controller: "slides", action: "new", channel: @channel.id do
-          %i.icon-plus
-          = t(:create_new_slide)
-    %ol.slide_list#all_slides
-      - Slide.find(:all, order: "LOWER(name)").each do |slide|
-        = render partial: "shared/draggable_slide", locals: { slide: slide, channel_slide_id: nil}
-
-:coffeescript
-  slideToChannel = (element) ->
-    element.css('color', 'red')
-  $(document).ready ->
-    init_sortable= () ->
-      $("#channel_slides").sortable
-        revert: true
-        connectWith: '#all_slides'
-        accept: 'all_slides'
-        update: (event, ui) ->
-          item = ui.item.first()
-          slide_id = item.find("form #_slide_id").val()
-          channel_slide_id = item.find("form #_channelslide_id").val()
-          index = parseInt(item.index())
-          if channel_slide_id.length > 0
-            $.ajax
-              type: "PUT"
-              dataType: "json"
-              data: 'channel_slide[position]='+index
-              url: "/channels/#{@channel.id}/slides/"+channel_slide_id
-          else
-            $.ajax
-              type: "POST"
-              data: {slide_id: slide_id, position: index}
-              el: item
-              url: "/channels/#{@channel.id}/slides"
-              success: (data)->
-                updated_channels = $(data).find("#channel_slides")
-                $("#channel_slides").replaceWith(updated_channels)
-                init_sortable()
-      .disableSelection();
-
-      $("#all_slides li").draggable
-        connectToSortable: '#channel_slides'
-        helper: 'clone'
-        rever: 'invalid'
-        start: (e, ui) ->
-          $(ui.helper).addClass("ui-draggable-helper")
-          return
-
-      $(".remove_button").bind 'click', (e)->
-        e.preventDefault()
-        channel_slide_id = $(e.target).closest("li").find("form #_channelslide_id").val()
-        $.ajax
-          url: "/channels/#{@channel.id}/slides/"+ channel_slide_id
-          data: ""
-          type: "DELETE"
-          success: (data)->
-            updated_channels = $(data).find("#channel_slides")
-            $("#channel_slides").replaceWith(updated_channels)
-            init_sortable()
-          error: (data) ->
-            alert "can't delete last slide"
-
-
-      .disableSelection();
-
-    init_sortable()
-    $('#channel_edit_icon').click ->
-      $('#channel_edit_forms').toggle()
+%aside.span4.well.well-small
+  %header#slides_header
+    %h2
+      = t(:slide_listing)
+    %span.create_slide.btn.btn-success
+      = link_to controller: "slides", action: "new", channel: @channel.id do
+        %i.icon-plus
+        = t(:create_new_slide)
+  %ol.slide_list#all_slides
+    - Slide.find(:all, order: "LOWER(name)").each do |slide|
+      = render partial: "shared/draggable_slide", locals: { slide: slide, channel_slide_id: nil}
