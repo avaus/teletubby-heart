@@ -9,6 +9,10 @@ $(document).ready ->
       revert: true
       connectWith: '#all_slides'
       accept: 'all_slides'
+      over: (event, ui) ->
+        ui.sender.addClass('drag_over')
+      out: (event, ui) ->
+        ui.sender.removeClass('drag_over')
       update: (event, ui) ->
         item = ui.item.first()
         slide_id = item.find('input[name=slide_id]').val()

@@ -294,3 +294,7 @@ a.arrow {
 #channel_edit_icon * {
   display: inline;
 }
+
+.drag_over {
+  border-color: green;
+}
