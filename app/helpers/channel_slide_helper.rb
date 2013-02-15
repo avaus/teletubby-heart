@@ -1,0 +1,2 @@
+module ChannelSlideHelper
+end

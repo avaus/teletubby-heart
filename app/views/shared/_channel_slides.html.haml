@@ -1,0 +1,9 @@
+%h2
+  = t(:channel_slides)
+%ol#slide_list
+  - channel_slides.each do |slide_relation|
+    %li{style: "clear: both"}
+      .span4
+        = link_to slide_relation.slide.name, url_for(slide_relation.slide)
+      .span4
+        = link_to(t(:remove_from_channel), {controller: 'channel_slides', action: 'destroy', id: slide_relation.id, channel_id: @channel.id}, {method: 'delete'})

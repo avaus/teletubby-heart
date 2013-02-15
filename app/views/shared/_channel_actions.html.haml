@@ -1,0 +1,23 @@
+%ul.dropdown-menu
+  %li.watch
+    = link_to({controller: "channels", action: "watch", id: channel}, {"title" => t(:watch_slideshow_tooltip)} ) do
+      %i.icon-film.left
+      = t(:watch)
+  %li
+    = link_to({controller: "channels", action: "show", id: channel}, {"title" => t(:edit_channel_tooltip)} ) do
+      %i.icon-pencil.left
+      = t(:edit)
+  - if !channel.default?
+    %li
+      - if channel.slides.size > 0
+        = link_to({controller: "channels", action: "set_as_default", id: channel}, {"title" => t(:set_as_default_tooltip), method: :put, confirm: I18n.t(:default_channel_change_confirmation, name: channel.name)} ) do
+          %i.icon-star.left
+          = t(:set_as_default)
+      - else
+        = link_to("#", {"class" => "disabled-link", "title" => t(:cannot_set_as_default_channel)} ) do
+          %i.icon-star.left
+          = t(:set_as_default)
+    %li
+      = link_to({controller: "channels", action: "destroy", id: channel}, {"title" => t(:delete_channel_tooltip), method: :delete, confirm: I18n.t(:channel_deletion_confirmation, name: channel.name)} ) do
+        %i.icon-trash.left
+        = t(:delete)

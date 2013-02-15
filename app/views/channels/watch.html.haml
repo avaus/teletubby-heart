@@ -1,0 +1,18 @@
+%iframe{:id => "channel", :src => @current_slide.url, :width => "100%", :height => "100%"}
+= subscribe_to "/channels/#{@channel.id}"
+:coffeescript
+  $(document).ready ->
+    startTime = new Date().getTime()
+    duration = #{@current_slide.duration*1000}
+    setInterval () ->
+      elapsed = new Date().getTime() - startTime
+      if(elapsed > duration)
+        $.ajax
+          type: 'GET'
+          url: '/channels/#{@channel.id}/next_slide'
+          dataType: 'json'
+          success: (data) ->
+            duration = data.duration * 1000
+            startTime = new Date().getTime()
+            $('#channel').attr('src', data.url)
+    , 1000

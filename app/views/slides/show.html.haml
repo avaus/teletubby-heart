@@ -1,0 +1,8 @@
+.span6.well.well-small
+  %div
+    %h1
+      = I18n.t(:slide_header, name: @slide.name)
+    = render partial: "form"
+
+    = form_tag({controller: "slides", action: "destroy", id: @slide}, { method: "delete"}) do
+      = submit_tag(t(:delete), confirm: I18n.t(:slide_deletion_confirmation, name: @slide.name))

@@ -1,0 +1,28 @@
+#previous.span1
+  = link_to do
+    %i.icon-arrow-left.icon-large
+- @channels.each do |channel|
+  .span2.well.well-small
+    .btn-group{style: "float: right"}
+      %a.btn.dropdown-toggle{'data-toggle' => 'dropdown', 'href' => '#'}
+        %i.icon-cog
+        %span.caret
+      = render partial: "shared/channel_actions", locals: {channel: channel}
+    .channel-header
+      %h5
+        = link_to controller: "channels", action: "show", id: channel do
+          = raw(truncate(channel.name, :length => 10))
+        - if channel.default?
+          %p.def default
+      %ol
+        - channel.channel_slides.each do |channel_slide|
+          %li
+            = link_to channel_slide.slide.name, url_for(channel_slide.slide)
+
+
+#next.span1.pull-right
+  = link_to do
+    - if @is_last
+      %i.icon-arrow-right.icon-large{:class => "disabled-link"}
+    - else
+      %i.icon-arrow-right.icon-large
