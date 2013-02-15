@@ -15,5 +15,6 @@
 //= require jquery-ui
 //= require twitter/bootstrap
 //= require global_helpers
+//= require screenfull
 //= require private_pub
 //= require ckeditor/init
