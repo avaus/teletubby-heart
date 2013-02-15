@@ -35,3 +35,5 @@
   %ol.slide_list#all_slides
     - Slide.find(:all, order: "LOWER(name)").each do |slide|
       = render partial: "shared/draggable_slide", locals: { slide: slide, channel_slide_id: nil}
+
+= javascript_include_tag "channel.js"
