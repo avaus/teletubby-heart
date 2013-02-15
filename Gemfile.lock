@@ -257,6 +257,7 @@ DEPENDENCIES
   kaminari
   ledermann-rails-settings
   less-rails
+  less-rails-bootswatch
   paperclip (~> 3.0)
   passenger
   pg

@@ -52,10 +52,11 @@ ActiveRecord::Schema.define(:version => 20130129190241) do
     t.integer  "last_slide"
     t.datetime "last_login"
     t.datetime "deleted_at"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.datetime "last_slide_change", :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.datetime "last_slide_change",                        :null => false
     t.text     "user_agent"
+    t.string   "name",              :default => "unnamed"
   end
 
   create_table "settings", :force => true do |t|
