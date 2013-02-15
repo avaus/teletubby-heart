@@ -15,6 +15,7 @@
 //= require jquery-ui
 //= require twitter/bootstrap
 //= require global_helpers
+//= require client
 //= require private_pub
 //= require ckeditor/init
 //= require_tree .
