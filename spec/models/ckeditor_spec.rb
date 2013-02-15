@@ -2,20 +2,15 @@ require 'spec_helper'
 
 describe Ckeditor do
   describe Ckeditor::Picture do
-    before(:each) do
-
-    end
-    it "has valid url" do
-      visit "/"
-      response.should == '404'
+    it "has valid url_content" do
+      ck = Ckeditor::Picture.new
+      ck.url_content.should == "/data/content/missing.png"
     end
   end
   describe Ckeditor::AttachmentFile do
-    before(:each) do
-    end
-    it "has valid url" do
-      visit "/"
-      response.should == '404'
+    it "has valid url_thumb" do
+      ck = Ckeditor::Picture.new
+      ck.url_thumb.should == "/data/thumb/missing.png"
     end
   end
 end
