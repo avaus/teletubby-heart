@@ -65,4 +65,4 @@ Authors
 License
 -------
 
-Licensed under the ** license.
+Licensed under the MIT license.
