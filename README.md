@@ -37,6 +37,11 @@ RAILS_ENV=production rake db:migrate
 rake db:seed
 ```
 
+* Start pub/sub server. Append '-p 9290' if production
+```
+rackup private_pub.ru -s thin -E production
+```
+
 * Check that tests pass by running 
 ```
 bundle exec rspec spec/
@@ -45,11 +50,6 @@ bundle exec rspec spec/
 * Start application server. Append '-e production' if production
 ```
 rails server
-```
-
-* Start pub/sub server. Append '-p 9290' if production
-```
-rackup private_pub.ru -s thin -E production
 ```
 
 Usage
