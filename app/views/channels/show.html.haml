@@ -1,20 +1,18 @@
 %div.span5.well.well-small{:id => "channel_id_#{@channel.id}"}
   %header
-    %h1
-      = I18n.t(:channel_header, name: @channel.name)
-    %button.btn.btn-warning#channel_edit_icon
+    %button.btn.btn-warning.pull-right#channel_edit_icon
       %i.icon-edit
       Edit
+    %h1
+      = I18n.t(:channel_header, name: @channel.name)
   %div#channel_edit_forms{:class => ("hidden" unless @channel.errors.size() > 0)}
     %div#channel_edit_form
-      = simple_form_for @channel, url: {action: "update"} do |f|
-        = f.input :name
-        = f.submit t(:save_changes), class: "btn"
     -if not @channel.default?
-      %div#channel_delete_form
-        .well
-          = form_tag({controller: "channels", action: "destroy", id: @channel}, { method: "delete"}) do
-            = submit_tag(t(:delete), confirm: I18n.t(:channel_deletion_confirmation, name: @channel.name), class: "btn btn-danger")
+      = form_tag({controller: "channels", action: "destroy", id: @channel}, { method: "delete", class: "pull-right"}) do
+        = submit_tag(t(:delete), confirm: I18n.t(:channel_deletion_confirmation, name: @channel.name), class: "btn btn-danger")
+    = simple_form_for @channel, url: {action: "update"} do |f|
+      = f.input :name
+      = f.submit t(:save_changes), class: "btn btn-success"
   %section.well.well-small
     %h2
       = t(:channel_slides)
@@ -22,7 +20,7 @@
       = t(:channel_slides_tip)
     %ol.slide_list#channel_slides.droppable-box
       - @channel.channel_slides.each do |slide_relation|
-        = render partial: "shared/draggable_slide", locals: { slide: slide_relation.slide, channel_slide_id: slide_relation.id }
+        = render partial: "shared/draggable_slide", locals: { slide: slide_relation.slide, channel_slide_id: slide_relation.id, channel: @channel }
 
 %aside.span4.well.well-small
   %header#slides_header
@@ -34,6 +32,6 @@
         = t(:create_new_slide)
   %ol.slide_list#all_slides
     - Slide.find(:all, order: "LOWER(name)").each do |slide|
-      = render partial: "shared/draggable_slide", locals: { slide: slide, channel_slide_id: nil}
+      = render partial: "shared/draggable_slide", locals: { slide: slide, channel_slide_id: nil, channel: @channel}
 
 = javascript_include_tag "channel.js"

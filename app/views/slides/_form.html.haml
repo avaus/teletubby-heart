@@ -1,15 +1,20 @@
 - action = if @slide.new_record? then "create" else "update" end
-= simple_form_for(@slide, html:{class: "form-horizontal", :multipart => true}) do |f|
-  = f.hidden_field "channel_redirect_id", value: @channel_redirect_id
-  = f.input :type, :input_html => { :id => "typeDropDown" }, collection: [[t(:slide_type_web_page), "UrlSlide"],[t(:slide_type_image), "ImageSlide"],[t(:slide_type_youtube_video), "YoutubeSlide"],[t(:slide_type_custom_slide), "CustomSlide"]], as: :select, include_blank: false if @slide.new_record?
-  %div{:id => "slideForm"}
-    - if @slide.new_record?
-      - @slide.type = "UrlSlide"
-      = render partial: "url_slide"
-    - elsif @slide.type == "UrlSlide"
-      = render partial: "url_slide"
+= simple_form_for(@slide, html:{multipart: true}) do |form|
+  %input{type: "hidden", name: "channel_redirect_id", value: @channel_redirect_id}
+  = form.input :name, label: t(:name)
+  = form.input :duration, label: t(:duration_secs), as: :integer
+  = form.input :type, :input_html => { :id => "typeDropDown" }, collection: [[t(:slide_type_web_page), "UrlSlide"],[t(:slide_type_image), "ImageSlide"],[t(:slide_type_youtube_video), "YoutubeSlide"],[t(:slide_type_custom_slide), "CustomSlide"]], as: :select, include_blank: false if @slide.new_record?
+  %div#slideForm
+    - if @slide.type == "UrlSlide"
+      = render partial: "url_slide", locals: { form: form }
     - elsif @slide.type == "ImageSlide"
-      = render partial: "image_slide"
+      = render partial: "image_slide", locals: { form: form }
     - elsif @slide.type == "YoutubeSlide"
-      = render partial: "youtube_slide"
+      = render partial: "youtube_slide", locals: { form: form }
     - elsif @slide.type == "CustomSlide"
+      = render partial: "custom_slide", locals: { form: form }
+  = form.hidden_field :type
+  - if @slide.new_record?
+    = form.submit t(:create), class: 'btn btn-success'
+  - else
+    = form.submit t(:save_changes), class: 'btn btn-success'

@@ -2,10 +2,9 @@
   .well.well-small
     %h1
       = I18n.t(:slide_header, name: @slide.name)
-    - if flash[:notice]
-      %strong= flash[:notice]
     = render partial: "form"
 
   .well.well-small
     = form_tag({controller: "slides", action: "destroy", id: @slide}, { method: "delete"}) do
+      %input{type: "hidden", name: "channel_redirect_id", value: @channel_redirect_id}
       = submit_tag(t(:delete), confirm: I18n.t(:slide_deletion_confirmation, name: @slide.name), class: "btn btn-danger")

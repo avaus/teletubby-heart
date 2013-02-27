@@ -55,3 +55,4 @@ en:
   slide_type_image: "Image"
   slide_type_youtube_video: "Youtube video"
   slide_type_custom_slide: "Custom slide"
+  duration_secs: "Duration (seconds)"

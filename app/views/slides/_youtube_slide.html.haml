@@ -1,9 +1,1 @@
-= simple_form_for(@slide, html:{class: 'form-horizontal', :multipart => true}) do |f|
-  = f.input :name
-  = f.input :youtube, as: :string, required: true
-  = f.input :duration, as: :integer
-  = f.hidden_field :type
-  - if @slide.new_record?
-    = f.submit t(:create), class: 'btn'
-  - else
-    = f.submit t(:save_changes), class: 'btn' 
+= form.input :youtube, as: :string, required: true

@@ -2,5 +2,6 @@
   %div
     %h1.hdr
       = t(:create_new_slide)
-    = render partial: "form"
+    %div#slide_form
+      = render partial: "form"
 = javascript_include_tag "client.js"

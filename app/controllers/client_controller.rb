@@ -30,7 +30,7 @@ class ClientController < ApplicationController
         format.html { }
         format.json { render json: @clients }
     end
-  end 
+  end
 
   def switch_channel
     @client = Client.find(params[:id])

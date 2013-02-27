@@ -1,18 +1,42 @@
 .span6.well.well-small
   %div
+    = form_tag({controller: "client", action: "destroy_inactive_clients", id: @clients}, { method: "delete"}) do
+      = submit_tag(t(:clear_inactive), confirm: I18n.t(:clear_inactive_confirmation), class: "btn btn-danger clear-inactive")
     %h1
       =t(:client_listing)
     %ol#client_list
       - @clients.each do |client|
-        %li
-          %strong= "&#35;#{client.id}:".html_safe
-          = " Status: "
-          -if client.active?
-            =t(:active_client)
-          -else
-            =t(:inactive_client)
-          = ", User Agent: #{client.user_agent}"
-          = simple_form_for client, url: {action: 'switch_channel', controller: 'client', id: client},  html:{class: 'form-horizontal'} do |f|
-            = f.input :last_channel, :label => t(:current_channel), :collection => @channels, :label_method => :name, :value_method => :id
-            = f.submit t(:save_client_channel), class: 'btn'
+        .well.well-small
+          = link_to({controller: "client", action: "destroy", id: client}, {"title" => t(:clear_client)} ) do
+            %i.icon-remove.icon-large.right-corner-button
+          %li
+            %h4.client-name-edit
+              = "#{client.name}"
+              .client-name-edit
+                %i.icon-edit.client-name-edit.name-edit
+                .name-edit-field
+                  = simple_form_for client, url: {controller: 'client', action: "rename", id: client} do |f|
+                    = f.input :name, class: "input-small"
+                    = f.submit t(:save_changes), class: "btn btn-success submit"
+          %li
+            %strong= "&#35;#{client.id}:".html_safe
+            = " Status: "
+            -if client.active?
+              = t(:active_client)
+            -else
+              = t(:inactive_client)
+          %li
+            = "User Agent: #{client.user_agent}"
+          %div.switch
+            = simple_form_for client, url: {action: 'switch_channel', controller: 'client', id: client},  html:{class: 'switch-select'} do |f|
+              = f.input :last_channel, :label => t(:current_channel), :collection => @channels, :label_method => :name, :value_method => :id
+              = f.submit t(:save_client_channel), class: 'btn btn-success switch-btn'
 
+:coffeescript
+  $(window).load ->
+    $(".name-edit-field").hide()
+  $(".icon-edit").click ->
+    $(this).next(".name-edit-field").toggle "slow"
+    false
+
+  # Animation complete.

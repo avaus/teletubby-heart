@@ -2,9 +2,20 @@ require 'spec_helper'
 
 describe SlidesController do
   describe "GET 'new'" do
-    it "returns http success" do
+    it "should be success with default slide type" do
       get 'new'
+      assigns(:slide).type.should eq("UrlSlide")
       response.should be_success
+    end
+
+    it "should create the type automatically when type given" do
+      get :new, type: "YoutubeSlide"
+      assigns(:slide).type.should eq("YoutubeSlide")
+    end
+
+    it "should assign channel_redirect_id when channel parameter given" do
+      get :new, type: "YoutubeSlide", channel: 1
+      assigns(:channel_redirect_id).should eq("1")
     end
   end
 
@@ -42,10 +53,11 @@ describe SlidesController do
     it "should redirect to channel if channel_redirect_id given" do
       channel = Channel.create!(name: "Test")
       lambda {
-        post :create, slide: { type: "YoutubeSlide", name: "Foobar", youtube: "asdfghjk", channel_redirect_id: channel.id }, format: :html
+        post :create, slide: { type: "YoutubeSlide", name: "Foobar", youtube: "asdfghjk"}, channel_redirect_id: channel.id, format: :html
       }.should change(Slide, :count).by(1)
       response.status.should == 302
     end
+
   end
 
 
@@ -119,6 +131,12 @@ describe SlidesController do
       @slide.name.should == "new_name"
       response.should be_success
     end
+
+    it "should redirect to channel if channel_redirect_id given" do
+      channel = Channel.create!(name: "Test")
+      put :update, id: @slide, slide: {name: "new_name", type: "UrlSlide"}, channel_redirect_id: channel.id, format: :html
+      response.should redirect_to controller: 'channels', action: 'show', id: channel.id
+    end
   end
 
   describe "Delete slide" do
@@ -143,6 +161,18 @@ describe SlidesController do
       response.status.should == 400
       body = MultiJson.decode(response.body)
       body["message"].should eq("OnlySlideInDefaultChannelDeletionException")
+    end
+
+    it "should redirect to dashboard on default" do
+      channel = Channel.create!(name: "Test")
+      put :destroy, id: @slide, format: :html
+      response.should redirect_to controller: 'dashboard', action: 'home'
+    end
+
+    it "should redirect to channel if channel_redirect_id given" do
+      channel = Channel.create!(name: "Test")
+      put :destroy, id: @slide, channel_redirect_id: channel.id, format: :html
+      response.should redirect_to controller: 'channels', action: 'show', id: channel.id
     end
 
   end

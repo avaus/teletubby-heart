@@ -7,8 +7,8 @@
   - elsif slide.type == 'ImageSlide'
     %i.icon-picture
 
-  = link_to slide.name, url_for(slide), :class => "black-text"
-  %i.icon-trash.right-corner-button.remove_button.clickable
+  = link_to slide.name, url_for(controller: 'slides', action: 'show', id: slide.id, channel: channel.id)
+  %i.icon-trash.remove_button.clickable.remove_channel_slide
   %form.slide_ids.hidden
     %input{:type => "hidden", :name => "channelslide_id", :value => channel_slide_id}
     %input{:type => "hidden", :name => "slide_id", :value => slide.id}

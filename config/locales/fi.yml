@@ -7,4 +7,5 @@ fi:
   about: "Tietoa"
   help: "Apua"
   edit: "Muokkaa"
-  channel_deletion_confirmation: "Oletko varma että haluat poistaa kanavan %{name}?"
+  channel_deletion_confirmation: "Oletko varma, että haluat poistaa kanavan %{name}?"
+  remove_inactive_confirmation: "Oletko varma, että haluat poistaa inaktiiviset kanavat?"
