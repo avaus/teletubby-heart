@@ -10,7 +10,7 @@ set :stages, ["test_server", "production"]
 set :default_stage, "test_server"
 
 set :application, "Teletubby Heart"
-set :repository,  "git@github.com:Dige/project-teletubby-heart.git"
+set :repository,  "git@github.com:avaus/teletubby-heart.git"
 
 set :branch, "master"
 
