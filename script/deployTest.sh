@@ -1,2 +1,2 @@
-cd ~/project-teletubby-heart
+cd ~/teletubby-heart
 git pull
