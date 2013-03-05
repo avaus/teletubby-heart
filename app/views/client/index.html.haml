@@ -24,8 +24,5 @@
             duration = data.duration * 1000
             startTime = new Date().getTime()
             url = data.url
-            $('#channel').attr('src', url).hide()
-            setTimeout(()->
-              $('#channel').fadeIn()
-            , 500)
+            $('#channel').attr('src', url).show()
     , 1000
