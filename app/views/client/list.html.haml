@@ -32,11 +32,4 @@
               = f.input :last_channel, :label => t(:current_channel), :collection => @channels, :label_method => :name, :value_method => :id
               = f.submit t(:save_client_channel), class: 'btn btn-success switch-btn'
 
-:coffeescript
-  $(window).load ->
-    $(".name-edit-field").hide()
-  $(".icon-edit").click ->
-    $(this).next(".name-edit-field").toggle "slow"
-    false
-
-  # Animation complete.
+= javascript_include_tag "client_list.js"
