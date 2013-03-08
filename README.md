@@ -1,7 +1,7 @@
 Teletubby-Heart
 ===============
 
-Teletubby is easily extensible, good looking and accessible "Information Radiator". It can display relevant information e.g. build statuses, project status, billing forecasts, project schedules, video streams etc. on multiple different devices.
+Teletubby is easily extensible, good looking and accessible "Information Radiator". It can display relevant information e.g. build statuses, project status, billing forecasts, project schedules, images, video streams etc. on multiple different devices.
 
 The "Heart" is the core of Teletubby (someone might even call it the backend). It serves the content to the client devices.
 
