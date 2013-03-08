@@ -1,5 +1,5 @@
 set :rvm_type, :user
-set :rvm_ruby_string, :local
+
 require "rvm/capistrano"
 require 'capistrano/ext/multistage'
 require "bundler/capistrano"
@@ -14,6 +14,9 @@ set :repository,  "git@github.com:avaus/teletubby-heart.git"
 
 set :branch, "master"
 
+#set :rvm_ruby_string, :local
+#set :rvm_ruby_string, "1.9.3-p286"
+
 set :scm, :git
 
 after "deploy", "deploy:migrate"
@@ -24,11 +27,11 @@ end
 
 # Faye worker
 set(:faye_pid) { "#{deploy_to}/current/tmp/pids/faye.pid" }
-set(:faye_config) { "#{deploy_to}/private_pub.ru" }
+set(:faye_config) { "#{deploy_to}/current/private_pub.ru" }
 namespace :faye do
   desc "Start Faye"
   task :start do
-    run "cd #{deploy_to}/ && bundle exec rackup #{faye_config} -s thin -E production -D --pid #{faye_pid} -p #{faye_port}"
+    run "cd #{release_path}/ && bundle exec rackup #{faye_config} -s thin -E production -D --pid #{faye_pid} -p #{faye_port}"
   end
   desc "Stop Faye"
   task :stop do
