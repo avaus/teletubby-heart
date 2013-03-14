@@ -3,7 +3,7 @@ class YoutubeSlide < Slide
   validates :youtube, presence: true
 
   def parse_youtube url
-   	regex = /^(?:http:\/\/)?(?:www\.)?\w*\.\w*\/(?:watch\?v=)?((?:p\/)?[\w\-]+)/
+   	regex = /^(?:http(s)?:\/\/)?(?:www\.)?\w*\.\w*\/(?:watch\?v=)?((?:p\/)?[\w\-]+)/
    	url.match(regex)[1]
   end
 

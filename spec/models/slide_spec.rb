@@ -37,6 +37,11 @@ describe "Slide" do
       slide.url.should eq("http://www.youtube.com/embed/#{slide.parse_youtube(slide.youtube)}?enablejsapi=1&autoplay=1")
       slide.should be_valid
     end
+    it "should have a youtube id if it is a youtube slide with secure connection" do
+      slide = YoutubeSlide.new(name: "yts", youtube: "https://www.youtube.com/watch?v=_Q2LKGfhVwg")
+      slide.url.should eq("http://www.youtube.com/embed/#{slide.parse_youtube(slide.youtube)}?enablejsapi=1&autoplay=1")
+      slide.should be_valid
+    end
   end
 
   describe "deletion" do
