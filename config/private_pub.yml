@@ -5,7 +5,7 @@ test:
   server: "http://localhost:9292/faye"
   secret_token: "secret"
 test_server:
-  server: "http://192.168.111.150:9292/faye"
+  server: "http://194.100.211.115:9292/faye"
   secret_token: "secret"
 production:
   server: "http://192.168.111.150:9290/faye"
