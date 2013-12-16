@@ -8,16 +8,15 @@ The "Heart" is the core of Teletubby (someone might even call it the backend). I
 Requirements
 ------------
 
-* Ruby 1.9.3
-* Bundler
-* ImageMagick
+* Vagrant
+* VirtualBox
 
 Installation
 ------------
 
-* Clone the repository
+* Clone this repository with the --recursive parameter
 
-* Install gems 
+* Install gems
 ```
 bundle install
 ```
