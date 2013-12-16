@@ -28,8 +28,7 @@ bundle install
 * Migrate the development and test databases
 ```
 rake db:migrate
-RAILS_ENV=test rake db:migrate
-RAILS_ENV=production rake db:migrate
+rake db:test:load
 ```
 
 * Import fixtures to the development database
