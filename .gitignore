@@ -18,3 +18,5 @@ pickle-email-*.html
 /config/database.yml
 /shared/*
 .vagrant
+teletubby_heart_development
+teletubby_heart_test

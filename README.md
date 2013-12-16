@@ -38,7 +38,7 @@ rake db:seed
 
 * Check that tests pass by running 
 ```
-bundle exec rspec spec/
+bundle exec rspec
 ```
 
 * Start application server. Append '-e production' if production
