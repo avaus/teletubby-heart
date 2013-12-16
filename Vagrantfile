@@ -94,6 +94,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	chef.add_recipe "dependencies"
 	chef.add_recipe "rvm::vagrant"
 	chef.add_recipe "rvm::user"
+  chef.add_recipe "imagemagick"
+  chef.add_recipe "imagemagick::devel"  
 	
 	chef.json = {
 		:authorization => {
