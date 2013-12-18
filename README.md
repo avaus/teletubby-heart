@@ -14,40 +14,36 @@ Requirements
 Installation
 ------------
 
-* Clone this repository with the --recursive parameter
+* Clone this repository and submodules
+```
+git clone --recursive git@github.com:avaus/teletubby-heart.git
+```
 
 * Install gems
 ```
-bundle install
+cd /vagrant && bundle install
 ```
 
-* Rename config/database.yml.example to config/database.yml
-    * Configure the database.yml if needed
+* Configure databases
+```
+cp /vagrant/config/database.yml.example /vagrant/config/database.yml
+```
 
-* Migrate the development and test databases
+* Setup databases
 ```
 rake db:migrate
 rake db:test:load
-```
-
-* Import fixtures to the development database
-```
 rake db:seed
 ```
 
-* Check that tests pass by running 
+* Run tests
 ```
 bundle exec rspec
 ```
 
-* Start application server. Append '-e production' if production
+* Start rails and pub/sub servers
 ```
-rails server
-```
-
-* Start pub/sub server. Append '-p 9290' if production
-```
-rackup private_pub.ru -s thin -E production
+service rails start
 ```
 
 Usage
