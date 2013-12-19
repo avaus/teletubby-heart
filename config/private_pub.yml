@@ -4,10 +4,10 @@ development:
 test:
   server: "http://localhost:9292/faye"
   secret_token: "secret"
-test_server:
-  server: "http://194.100.211.115:9292/faye"
+staging:
+  server: "http://staging.avaustube.avaus.fi/faye"
   secret_token: "secret"
 production:
-  server: "http://192.168.111.150:9290/faye"
+  server: "http://avaustube.avaus.fi/faye"
   secret_token: "e87b982f768c1fd479bcf4bda90f89aac5b71df6873e6c0bf6fee826132f7fa4"
   signature_expiration: 3600 # one hour
