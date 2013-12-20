@@ -19,6 +19,18 @@ Installation
 git clone --recursive git@github.com:avaus/teletubby-heart.git
 ```
 
+* Start virtualbox with Vagrant
+
+```
+vagrant up
+```
+
+* Connect to the virtual box with your ssh client of choice. The default password is vagrant
+
+```
+ssh vagrant@localhost:2222
+```
+
 * Install gems
 ```
 cd /vagrant && bundle install
