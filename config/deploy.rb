@@ -5,9 +5,11 @@ require 'capistrano/ext/multistage'
 require "bundler/capistrano"
 load "deploy/assets"
 default_run_options[:pty] = true
+default_run_options[:shell] = '/bin/bash --login' 
+
 set :use_sudo, false
-set :stages, ["test_server", "production"]
-set :default_stage, "test_server"
+set :stages, ["staging", "production"]
+set :default_stage, "staging"
 
 set :application, "Teletubby Heart"
 set :repository,  "git@github.com:avaus/teletubby-heart.git"
@@ -26,8 +28,8 @@ before "deploy:assets:precompile" do
 end
 
 # Faye worker
-set(:faye_pid) { "#{deploy_to}/current/tmp/pids/faye.pid" }
-set(:faye_config) { "#{deploy_to}/current/private_pub.ru" }
+set(:faye_pid) { "#{release_path}/tmp/pids/faye.pid" }
+set(:faye_config) { "#{release_path}/private_pub.ru" }
 namespace :faye do
   desc "Start Faye"
   task :start do
