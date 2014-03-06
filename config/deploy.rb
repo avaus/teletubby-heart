@@ -28,7 +28,7 @@ before "deploy:assets:precompile" do
 end
 
 # Faye worker
-set(:faye_pid) { "#{release_path}/tmp/pids/faye.pid" }
+set(:faye_pid) { "#{deploy_to}/shared/pids/faye.pid" }
 set(:faye_config) { "#{release_path}/private_pub.ru" }
 namespace :faye do
   desc "Start Faye"
@@ -37,7 +37,9 @@ namespace :faye do
   end
   desc "Stop Faye"
   task :stop do
-    run "kill `cat #{faye_pid}` || true"
+    if File.file?(faye_pid) 
+      run "kill `cat #{faye_pid}` || true"
+    end
   end
 end
 before 'deploy:update_code', 'faye:stop'
