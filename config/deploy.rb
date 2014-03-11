@@ -14,8 +14,6 @@ set :default_stage, "staging"
 set :application, "Teletubby Heart"
 set :repository,  "git@github.com:avaus/teletubby-heart.git"
 
-set :branch, "master"
-
 #set :rvm_ruby_string, :local
 #set :rvm_ruby_string, "1.9.3-p286"
 

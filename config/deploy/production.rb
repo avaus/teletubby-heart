@@ -7,4 +7,5 @@ set :rvm_type, :system
 set :default_shell, :bash
 set :deploy_via, :remote_cache
 set :rvm_ruby_version, '1.9.3-p429@global'
+set :branch, "master"
 
