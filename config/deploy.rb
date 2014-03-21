@@ -4,6 +4,7 @@ require "rvm/capistrano"
 require 'capistrano/ext/multistage'
 require "bundler/capistrano"
 load "deploy/assets"
+load 'lib/deploy/seed'
 default_run_options[:pty] = true
 default_run_options[:shell] = '/bin/bash --login' 
 
@@ -20,6 +21,7 @@ set :repository,  "git@github.com:avaus/teletubby-heart.git"
 set :scm, :git
 
 after "deploy", "deploy:migrate"
+after "deploy:migrate", "deploy:seed"
 after "deploy:restart", "deploy:cleanup"
 before "deploy:assets:precompile" do
  run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
